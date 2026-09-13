@@ -2,16 +2,19 @@ import Link from "next/link";
 import { clsx } from "clsx";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "outline" | "link" | "outlineInverse" | "linkInverse";
+type Variant = "primary" | "primaryInverse" | "outline" | "link" | "outlineInverse" | "linkInverse";
 
+// Botones en blanco/negro/gris — el acento (#FF785A) se reserva para
+// texto (kickers, subtítulos, algunos hovers), no para rellenos de botón.
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-accent text-ink hover:bg-accent-hover px-6 py-3",
+  primary: "bg-foreground text-background hover:bg-foreground/85 px-6 py-3",
   outline:
     "border border-foreground text-foreground px-6 py-3 hover:bg-foreground hover:text-background",
   link: "text-foreground underline decoration-accent decoration-2 underline-offset-4 hover:text-accent px-0 py-0",
-  // Mismos "outline"/"link" pero para usar sobre fondos oscuros (hero con
-  // imagen, secciones "ink"): texto e borde en el tono claro en vez del
-  // oscuro por defecto.
+  // Mismos "primary"/"outline"/"link" pero para usar sobre fondos oscuros
+  // (hero con imagen, secciones "ink"): tono claro en vez del oscuro por
+  // defecto.
+  primaryInverse: "bg-ink-foreground text-ink hover:bg-ink-foreground/85 px-6 py-3",
   outlineInverse:
     "border border-ink-foreground text-ink-foreground px-6 py-3 hover:bg-ink-foreground hover:text-ink",
   linkInverse:

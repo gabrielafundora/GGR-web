@@ -52,14 +52,14 @@ export function ImageField({
           <button
             type="button"
             onClick={() => setMode("upload")}
-            className={`rounded-full px-3 py-1 ${mode === "upload" ? "bg-accent text-black" : "text-muted"}`}
+            className={`rounded-full px-3 py-1 ${mode === "upload" ? "bg-foreground text-background" : "text-muted"}`}
           >
             Subir imagen
           </button>
           <button
             type="button"
             onClick={() => setMode("url")}
-            className={`rounded-full px-3 py-1 ${mode === "url" ? "bg-accent text-black" : "text-muted"}`}
+            className={`rounded-full px-3 py-1 ${mode === "url" ? "bg-foreground text-background" : "text-muted"}`}
           >
             URL
           </button>
@@ -83,7 +83,7 @@ export function ImageField({
             type="file"
             accept="image/*"
             onChange={handleFile}
-            className="w-full rounded-lg border border-dashed border-border bg-surface px-3 py-2 text-sm text-foreground file:mr-3 file:rounded-full file:border-0 file:bg-accent file:px-3 file:py-1 file:text-xs file:font-medium file:text-black"
+            className="w-full rounded-lg border border-dashed border-border bg-surface px-3 py-2 text-sm text-foreground file:mr-3 file:rounded-full file:border-0 file:bg-foreground file:px-3 file:py-1 file:text-xs file:font-medium file:text-background"
           />
           <input type="hidden" name={name} value={url} />
         </>
