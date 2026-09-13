@@ -2,27 +2,31 @@
 @plugin "@tailwindcss/typography";
 
 /*
- * Paleta del sitio: fondos oscuros, blancos/grises para texto, acento
- * #FF785A. Diseño oscuro único (sin modo claro) — se define directamente
- * en :root, sin depender de prefers-color-scheme.
+ * Paleta editorial: fondo crema cálido, tinta casi negra, acento #FF785A
+ * usado con moderación (líneas, etiquetas, botones) en vez de bloques
+ * grandes. `ink` es el tono para las secciones oscuras que alternan con
+ * el crema (contraste tipo revista), independiente del acento.
  */
 @theme inline {
-  --color-background: #0b0b0b;
-  --color-surface: #121212;
-  --color-surface-2: #1a1a1a;
-  --color-foreground: #f5f5f5;
-  --color-muted: #a3a3a3;
-  --color-border: #2a2a2a;
+  --color-background: #f7f2ea;
+  --color-surface: #ffffff;
+  --color-surface-2: #efe7d8;
+  --color-foreground: #1c1912;
+  --color-muted: #6f6759;
+  --color-border: #e2d7c3;
   --color-accent: #ff785a;
   --color-accent-hover: #ff9478;
   --color-accent-muted: #e85f42;
+  --color-ink: #17140f;
+  --color-ink-foreground: #f7f2ea;
+  --color-ink-muted: #a89e8d;
 
   --font-serif: var(--font-heading), Georgia, serif;
   --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -33,9 +37,19 @@ body {
 
 ::selection {
   background: var(--color-accent);
-  color: #0b0b0b;
+  color: #17140f;
 }
 
-.prose-invert :is(h1, h2, h3, h4) {
+.prose :is(h1, h2, h3, h4) {
   font-family: var(--font-serif);
+}
+
+/* Etiqueta pequeña en mayúsculas, usada como "kicker" sobre títulos
+   (ej. "SOBRE LA AUTORA" antes de un h1 grande). */
+.kicker {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }

@@ -22,7 +22,7 @@ export function ArticleCard({ article }: { article: Article }) {
       </Link>
 
       <div className="flex flex-1 flex-col gap-2 p-5">
-        <p className="text-xs uppercase tracking-wider text-accent">
+        <p className="kicker text-accent-muted">
           {format(date, "d 'de' MMMM, yyyy", { locale: es })}
         </p>
         <h3 className="font-serif text-xl text-foreground">
@@ -33,9 +33,12 @@ export function ArticleCard({ article }: { article: Article }) {
         <p className="line-clamp-3 flex-1 text-sm text-muted">{article.excerpt}</p>
         <Link
           href={`/articulos/${article.slug}`}
-          className="mt-2 text-sm font-medium text-accent hover:text-accent-hover"
+          className="group mt-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-foreground hover:text-accent"
         >
-          Leer más →
+          Leer más
+          <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">
+            →
+          </span>
         </Link>
       </div>
     </Card>

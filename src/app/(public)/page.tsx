@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/metadata";
 import { Hero } from "@/components/public/Hero";
 import { BookCard } from "@/components/public/BookCard";
 import { ArticleCard } from "@/components/public/ArticleCard";
-import { LinkButton } from "@/components/ui/Button";
+import { LinkButton, ButtonArrow } from "@/components/ui/Button";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata("home", {
@@ -38,14 +38,20 @@ export default async function HomePage() {
           settings?.heroSubtext ??
           "Novelista y tallerista. Descubre mis libros, artículos sobre el oficio de escribir y los talleres literarios que imparto."
         }
-        imageUrl={settings?.heroImageUrl}
+        imageUrl={settings?.heroImageUrl ?? settings?.authorPhotoUrl}
       />
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="mb-8 flex items-end justify-between">
-          <h2 className="font-serif text-3xl text-foreground">Libros destacados</h2>
-          <Link href="/catalogo" className="text-sm text-accent hover:text-accent-hover">
-            Ver todo el catálogo →
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
+          <div>
+            <p className="kicker text-accent-muted">Obra publicada</p>
+            <h2 className="mt-3 font-serif text-4xl text-foreground">Libros destacados</h2>
+          </div>
+          <Link
+            href="/catalogo"
+            className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-foreground hover:text-accent"
+          >
+            Ver todo el catálogo <ButtonArrow />
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -56,11 +62,17 @@ export default async function HomePage() {
       </section>
 
       {latestArticles.length > 0 ? (
-        <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-          <div className="mb-8 flex items-end justify-between">
-            <h2 className="font-serif text-3xl text-foreground">Últimos artículos</h2>
-            <Link href="/articulos" className="text-sm text-accent hover:text-accent-hover">
-              Ver todos →
+        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
+            <div>
+              <p className="kicker text-accent-muted">El blog</p>
+              <h2 className="mt-3 font-serif text-4xl text-foreground">Últimos artículos</h2>
+            </div>
+            <Link
+              href="/articulos"
+              className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-foreground hover:text-accent"
+            >
+              Ver todos <ButtonArrow />
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -71,14 +83,19 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <div className="rounded-2xl border border-border bg-surface p-10 text-center sm:p-16">
-          <h2 className="font-serif text-3xl text-foreground">Cursos y talleres literarios</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-muted">
-            Conoce los talleres que imparto para quienes quieren empezar o profundizar en su
-            escritura.
-          </p>
-          <LinkButton href="/cursos" variant="primary" className="mt-8">
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <div className="grid grid-cols-1 items-center gap-10 bg-ink px-8 py-16 text-ink-foreground sm:px-16 lg:grid-cols-[1fr_auto]">
+          <div>
+            <p className="kicker text-ink-muted">Talleres literarios</p>
+            <h2 className="mt-3 max-w-md font-serif text-3xl leading-tight sm:text-4xl">
+              Escribe con <span className="italic">acompañamiento</span> y estructura.
+            </h2>
+            <p className="mt-4 max-w-md text-ink-muted">
+              Conoce los talleres que imparto para quienes quieren empezar o profundizar en su
+              escritura.
+            </p>
+          </div>
+          <LinkButton href="/cursos" variant="primary" className="w-fit">
             Ver cursos y talleres
           </LinkButton>
         </div>

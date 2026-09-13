@@ -32,7 +32,7 @@ export function MobileNav({ links }: { links: { href: string; label: string }[] 
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-base text-foreground transition-colors hover:bg-surface hover:text-accent"
+                className="px-3 py-3 text-sm font-semibold uppercase tracking-[0.1em] text-foreground transition-colors hover:bg-surface-2 hover:text-accent"
               >
                 {link.label}
               </Link>

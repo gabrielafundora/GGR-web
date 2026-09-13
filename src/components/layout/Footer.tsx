@@ -17,38 +17,48 @@ export async function Footer() {
   const socialLinks = SOCIAL_FIELDS.filter((f) => settings?.[f.key]);
 
   return (
-    <footer className="mt-24 border-t border-border">
-      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-        <div>
-          <p className="font-serif text-base text-foreground">{siteName}</p>
-          {settings?.tagline ? <p className="mt-1 text-sm text-muted">{settings.tagline}</p> : null}
-        </div>
+    <footer className="mt-32 bg-ink text-ink-foreground">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <p className="kicker text-ink-muted">Mantengámonos en contacto</p>
+        <p className="mt-4 max-w-xl font-serif text-3xl leading-snug sm:text-4xl">
+          Nuevos libros, artículos y talleres,{" "}
+          <span className="italic">directo cuando salgan.</span>
+        </p>
 
-        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-          {NAV_LINKS.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-accent">
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <div className="mt-12 flex flex-col gap-8 border-t border-white/10 pt-8 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="font-serif text-lg italic">{siteName}</p>
+            {settings?.tagline ? (
+              <p className="mt-1 text-sm text-ink-muted">{settings.tagline}</p>
+            ) : null}
+          </div>
 
-        {socialLinks.length > 0 ? (
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-            {socialLinks.map((f) => (
-              <a
-                key={f.key}
-                href={settings![f.key]!}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted hover:text-accent"
-              >
-                {f.label}
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold uppercase tracking-[0.1em] text-ink-muted">
+            {NAV_LINKS.map((link) => (
+              <a key={link.href} href={link.href} className="hover:text-accent">
+                {link.label}
               </a>
             ))}
-          </div>
-        ) : null}
+          </nav>
+
+          {socialLinks.length > 0 ? (
+            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold uppercase tracking-[0.1em]">
+              {socialLinks.map((f) => (
+                <a
+                  key={f.key}
+                  href={settings![f.key]!}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-ink-muted hover:text-accent"
+                >
+                  {f.label}
+                </a>
+              ))}
+            </div>
+          ) : null}
+        </div>
       </div>
-      <div className="border-t border-border px-4 py-4 text-center text-xs text-muted sm:px-6">
+      <div className="border-t border-white/10 px-4 py-4 text-center text-xs text-ink-muted sm:px-6">
         © {year} {siteName}. Todos los derechos reservados.
       </div>
     </footer>
