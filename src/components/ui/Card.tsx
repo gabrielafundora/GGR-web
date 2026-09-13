@@ -9,7 +9,7 @@ export function Card({
   return (
     <div
       className={clsx(
-        "rounded-2xl border border-border bg-surface transition-colors hover:border-accent/50",
+        "border border-border bg-surface transition-colors hover:border-foreground/40",
         className
       )}
       {...props}
@@ -23,7 +23,7 @@ export function Badge({ children, className }: { children: ReactNode; className?
   return (
     <span
       className={clsx(
-        "inline-flex items-center rounded-full bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-wider text-black",
+        "inline-flex items-center bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-ink",
         className
       )}
     >

@@ -16,18 +16,18 @@ export async function Header() {
   const siteName = settings?.siteName ?? "Gabriela Guerra Rey";
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-        <Link href="/" className="font-serif text-lg tracking-tight text-foreground">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6">
+        <Link href="/" className="font-serif text-xl italic tracking-tight text-foreground">
           {siteName}
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-9 md:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-muted transition-colors hover:text-accent"
+              className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-foreground/70 transition-colors hover:text-accent"
             >
               {link.label}
             </Link>

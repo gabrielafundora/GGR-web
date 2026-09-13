@@ -29,7 +29,9 @@ export function BookCard({ book }: { book: Book }) {
               {book.title}
             </Link>
           </h3>
-          {book.subtitle ? <p className="mt-1 text-sm text-muted">{book.subtitle}</p> : null}
+          {book.subtitle ? (
+            <p className="mt-1 font-serif text-sm italic text-muted">{book.subtitle}</p>
+          ) : null}
         </div>
 
         <p className="line-clamp-3 flex-1 text-sm text-muted">{book.description}</p>

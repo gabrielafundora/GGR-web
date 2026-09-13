@@ -2,16 +2,17 @@ import Link from "next/link";
 import { clsx } from "clsx";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "outline" | "ghost";
+type Variant = "primary" | "outline" | "link";
 
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-accent text-black hover:bg-accent-hover",
-  outline: "border border-border text-foreground hover:border-accent hover:text-accent",
-  ghost: "text-foreground hover:text-accent",
+  primary: "bg-accent text-ink hover:bg-accent-hover px-6 py-3",
+  outline:
+    "border border-foreground text-foreground px-6 py-3 hover:bg-foreground hover:text-background",
+  link: "text-foreground underline decoration-accent decoration-2 underline-offset-4 hover:text-accent px-0 py-0",
 };
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium tracking-wide transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "group inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 export function Button({
   variant = "primary",
@@ -51,5 +52,14 @@ export function LinkButton({
     <Link href={href} className={classes}>
       {children}
     </Link>
+  );
+}
+
+/** Flechita que se corre un poco al hover — para los CTA tipo "Ver más →". */
+export function ButtonArrow() {
+  return (
+    <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">
+      →
+    </span>
   );
 }
