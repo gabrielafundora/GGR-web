@@ -12,12 +12,7 @@ export function Hero({
   return (
     <section className="relative overflow-hidden bg-ink text-ink-foreground">
       {imageUrl ? (
-        <>
-          <img src={imageUrl} alt="" className="absolute inset-0 h-full w-full object-cover" />
-          {/* Capa pareja sobre toda la foto: mismo contraste de texto en
-              cualquier punto, y la imagen se sigue viendo por igual. */}
-          <div className="absolute inset-0 bg-ink/70" />
-        </>
+        <img src={imageUrl} alt="" className="absolute inset-0 h-full w-full object-cover" />
       ) : null}
 
       <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
