@@ -42,9 +42,9 @@ export default async function AdminArticlesPage() {
                 <td className="px-4 py-3 text-muted">{article.published ? "Publicado" : "Borrador"}</td>
                 <td className="px-4 py-3">
                   {article.metaTitle && article.metaDescription ? (
-                    <span className="text-foreground">Completo</span>
+                    <span className="font-medium text-green-600">Completo</span>
                   ) : (
-                    <span className="text-muted">Incompleto</span>
+                    <span className="font-medium text-red-600">Incompleto</span>
                   )}
                 </td>
                 <td className="px-4 py-3">

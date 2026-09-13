@@ -36,9 +36,9 @@ export default async function AdminBooksPage() {
                 <td className="px-4 py-3 text-muted">{book.published ? "Publicado" : "Borrador"}</td>
                 <td className="px-4 py-3">
                   {book.metaTitle && book.metaDescription ? (
-                    <span className="text-foreground">Completo</span>
+                    <span className="font-medium text-green-600">Completo</span>
                   ) : (
-                    <span className="text-muted">Incompleto</span>
+                    <span className="font-medium text-red-600">Incompleto</span>
                   )}
                 </td>
                 <td className="px-4 py-3">
