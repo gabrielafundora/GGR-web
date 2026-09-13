@@ -12,7 +12,7 @@ const LINKS = [
   { href: "/admin/ajustes", label: "Ajustes del sitio" },
 ];
 
-export function AdminSidebar({ email }: { email?: string | null }) {
+export function AdminSidebar({ userLabel }: { userLabel?: string | null }) {
   return (
     <aside className="flex w-full shrink-0 flex-col justify-between border-border bg-surface p-4 sm:w-56 sm:min-h-screen sm:border-r">
       <div>
@@ -31,7 +31,7 @@ export function AdminSidebar({ email }: { email?: string | null }) {
       </div>
 
       <div className="mt-6 border-t border-border pt-4">
-        {email ? <p className="mb-3 truncate px-2 text-xs text-muted">{email}</p> : null}
+        {userLabel ? <p className="mb-3 truncate px-2 text-xs text-muted">{userLabel}</p> : null}
         <form
           action={async () => {
             "use server";
