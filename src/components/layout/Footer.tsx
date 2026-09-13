@@ -34,8 +34,7 @@ export async function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
         <p className="kicker text-ink-muted">Mantengámonos en contacto</p>
         <p className="mt-4 max-w-xl font-serif text-3xl leading-snug sm:text-4xl">
-          Nuevos libros, artículos y talleres,{" "}
-          <span className="italic">directo cuando salgan.</span>
+          Toda conversación puede abrir una historia.
         </p>
 
         {settings?.contactEmail ? (
