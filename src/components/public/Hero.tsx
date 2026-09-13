@@ -14,9 +14,9 @@ export function Hero({
       {imageUrl ? (
         <>
           <img src={imageUrl} alt="" className="absolute inset-0 h-full w-full object-cover" />
-          {/* Degradado: más oscuro donde va el texto (izquierda), más
-              transparente hacia la derecha para que la foto se siga viendo. */}
-          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/30" />
+          {/* Capa pareja sobre toda la foto: mismo contraste de texto en
+              cualquier punto, y la imagen se sigue viendo por igual. */}
+          <div className="absolute inset-0 bg-ink/70" />
         </>
       ) : null}
 

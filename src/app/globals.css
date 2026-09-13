@@ -18,10 +18,10 @@
   --color-accent: #ff785a;
   --color-accent-hover: #ff9478;
   --color-accent-muted: #e85f42;
-  --color-ink: #2b2822;
-  --color-ink-2: #363228;
+  --color-ink: #24232d;
+  --color-ink-2: #2f2e3a;
   --color-ink-foreground: #f7f2ea;
-  --color-ink-muted: #b3a996;
+  --color-ink-muted: #9a98a8;
 
   --font-serif: var(--font-heading), Georgia, serif;
   --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
