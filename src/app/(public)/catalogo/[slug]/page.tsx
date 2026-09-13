@@ -53,37 +53,22 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
         </Link>
 
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[340px_1fr] lg:gap-16">
-          <div className="relative mx-auto w-full max-w-[280px] lg:mx-0 lg:max-w-none">
-            <div className="absolute -bottom-5 -right-5 h-full w-full bg-accent/15" aria-hidden />
-            <div className="relative aspect-2/3 w-full overflow-hidden bg-surface-2 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]">
-              <img
-                src={book.coverImageUrl}
-                alt={`Portada de ${book.title}`}
-                className="h-full w-full object-cover"
-              />
+          {/* Portada + datos rápidos + CTA: viven juntos en esta columna para que su
+              altura no dependa de qué tan larga sea la descripción de al lado. */}
+          <div className="mx-auto w-full max-w-[280px] lg:mx-0 lg:max-w-none">
+            <div className="relative">
+              <div className="absolute -bottom-5 -right-5 h-full w-full bg-accent/15" aria-hidden />
+              <div className="relative aspect-2/3 w-full overflow-hidden bg-surface-2 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]">
+                <img
+                  src={book.coverImageUrl}
+                  alt={`Portada de ${book.title}`}
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
-          </div>
-
-          <div>
-            {book.genre || book.year ? (
-              <p className="kicker text-accent-muted">
-                {[book.genre, book.year].filter(Boolean).join(" · ")}
-              </p>
-            ) : null}
-            <h1 className="mt-3 font-serif text-5xl leading-[1.05] text-foreground sm:text-6xl">
-              {book.title}
-            </h1>
-            {book.subtitle ? (
-              <p className="mt-3 font-serif text-xl italic text-muted">{book.subtitle}</p>
-            ) : null}
-            <p className="mt-3 text-sm text-muted">{authors}</p>
-
-            <p className="mt-8 max-w-2xl whitespace-pre-line text-sm leading-relaxed text-muted">
-              {book.description}
-            </p>
 
             {book.editorial || book.idioma || book.paginas || book.isbn ? (
-              <dl className="mt-10 grid max-w-2xl grid-cols-2 gap-x-6 gap-y-6 border-t border-border pt-8 sm:grid-cols-4">
+              <dl className="mt-10 flex flex-col gap-4 border-t border-border pt-6">
                 {book.editorial ? (
                   <div>
                     <dt className="kicker text-foreground/50">Editorial</dt>
@@ -111,9 +96,28 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
               </dl>
             ) : null}
 
-            <LinkButton href={book.amazonUrl} external variant="primary" className="mt-10">
+            <LinkButton href={book.amazonUrl} external variant="primary" className="mt-8 w-full">
               Ver en Amazon
             </LinkButton>
+          </div>
+
+          <div>
+            {book.genre || book.year ? (
+              <p className="kicker text-accent-muted">
+                {[book.genre, book.year].filter(Boolean).join(" · ")}
+              </p>
+            ) : null}
+            <h1 className="mt-3 font-serif text-5xl leading-[1.05] text-foreground sm:text-6xl">
+              {book.title}
+            </h1>
+            {book.subtitle ? (
+              <p className="mt-3 font-serif text-xl italic text-muted">{book.subtitle}</p>
+            ) : null}
+            <p className="mt-3 text-sm text-muted">{authors}</p>
+
+            <p className="mt-8 whitespace-pre-line text-sm leading-relaxed text-muted">
+              {book.description}
+            </p>
           </div>
         </div>
       </div>
