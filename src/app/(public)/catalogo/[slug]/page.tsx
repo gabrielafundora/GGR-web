@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
 import { buildEntityMetadata } from "@/lib/metadata";
+import { formatAuthorList } from "@/lib/format";
 import { LinkButton } from "@/components/ui/Button";
 
 async function getBook(slug: string) {
@@ -24,8 +25,13 @@ export async function generateMetadata({
 
 export default async function BookDetailPage({ params }: PageProps<"/catalogo/[slug]">) {
   const { slug } = await params;
-  const book = await getBook(slug);
+  const [book, settings] = await Promise.all([
+    getBook(slug),
+    prisma.siteSettings.findUnique({ where: { id: 1 } }),
+  ]);
   if (!book || !book.published) notFound();
+
+  const authors = formatAuthorList([settings?.siteName ?? "Gabriela Guerra Rey", ...book.coautores]);
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
@@ -48,9 +54,7 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
           {book.subtitle ? (
             <p className="mt-2 font-serif text-lg italic text-muted">{book.subtitle}</p>
           ) : null}
-          {book.coautores.length > 0 ? (
-            <p className="mt-2 text-sm text-muted">Con {book.coautores.join(", ")}</p>
-          ) : null}
+          <p className="mt-2 text-sm text-muted">{authors}</p>
 
           <p className="mt-6 whitespace-pre-line text-base leading-relaxed text-muted">
             {book.description}

@@ -12,10 +12,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function CatalogoPage() {
-  const books = await prisma.book.findMany({
-    where: { published: true },
-    orderBy: { order: "asc" },
-  });
+  const [books, settings] = await Promise.all([
+    prisma.book.findMany({
+      where: { published: true },
+      orderBy: { order: "asc" },
+    }),
+    prisma.siteSettings.findUnique({ where: { id: 1 } }),
+  ]);
+  const authorName = settings?.siteName ?? "Gabriela Guerra Rey";
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
@@ -31,7 +35,7 @@ export default async function CatalogoPage() {
       {books.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {books.map((book) => (
-            <BookCard key={book.id} book={book} />
+            <BookCard key={book.id} book={book} authorName={authorName} />
           ))}
         </div>
       ) : (
