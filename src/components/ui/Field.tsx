@@ -1,5 +1,5 @@
 import { clsx } from "clsx";
-import type { InputHTMLAttributes, ReactNode, TextareaHTMLAttributes } from "react";
+import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
 
 function FieldWrapper({
   label,
@@ -57,6 +57,24 @@ export function Textarea({
   return (
     <FieldWrapper label={label} htmlFor={id} hint={hint} error={error}>
       <textarea id={id} className={clsx(textareaClasses, className)} {...props} />
+    </FieldWrapper>
+  );
+}
+
+export function Select({
+  label,
+  hint,
+  error,
+  className,
+  children,
+  ...props
+}: SelectHTMLAttributes<HTMLSelectElement> & { label: string; hint?: string; error?: string; children: ReactNode }) {
+  const id = props.id ?? props.name ?? label;
+  return (
+    <FieldWrapper label={label} htmlFor={id} hint={hint} error={error}>
+      <select id={id} className={clsx(inputClasses, className)} {...props}>
+        {children}
+      </select>
     </FieldWrapper>
   );
 }

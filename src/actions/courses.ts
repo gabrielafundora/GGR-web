@@ -17,7 +17,8 @@ function parseCourseForm(formData: FormData) {
     imageUrl: formData.get("imageUrl"),
     externalUrl: formData.get("externalUrl"),
     modality: formData.get("modality"),
-    featured: formData.get("featured") === "on",
+    isPermanent: formData.get("isPermanent") === "on",
+    sessionsCount: formData.get("sessionsCount") || undefined,
     published: formData.get("published") === "on",
     order: formData.get("order") || 0,
   });

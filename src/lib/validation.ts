@@ -60,14 +60,24 @@ export const articleSchema = z.object({
 });
 export type ArticleInput = z.infer<typeof articleSchema>;
 
+export const COURSE_MODALITY_OPTIONS = [
+  "Online, en vivo",
+  "Presencial",
+  "Online, autoaprendizaje",
+] as const;
+
 export const courseSchema = z.object({
   slug: slugField,
   title: z.string().trim().min(1, "El título es obligatorio"),
   description: z.string().trim().min(1, "La descripción es obligatoria"),
   imageUrl: optionalUrlField,
   externalUrl: urlField,
-  modality: z.string().trim().optional().transform((v) => v || undefined),
-  featured: z.boolean().default(false),
+  modality: z
+    .union([z.literal(""), z.enum(COURSE_MODALITY_OPTIONS)])
+    .optional()
+    .transform((v) => (v ? v : undefined)),
+  isPermanent: z.boolean().default(false),
+  sessionsCount: z.coerce.number().int().positive().optional(),
   published: z.boolean().default(true),
   order: z.coerce.number().int().default(0),
 });

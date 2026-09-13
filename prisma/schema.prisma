@@ -65,18 +65,19 @@ model Article {
 }
 
 model Course {
-  id          String   @id @default(cuid())
-  slug        String   @unique
-  title       String
-  description String
-  imageUrl    String?
-  externalUrl String
-  modality    String?
-  featured    Boolean  @default(false)
-  published   Boolean  @default(true)
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  description   String
+  imageUrl      String?
+  externalUrl   String
+  modality      String?
+  isPermanent   Boolean  @default(false)
+  sessionsCount Int?
+  published     Boolean  @default(true)
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 /// Metadatos (title/description/og:image) de las secciones principales del

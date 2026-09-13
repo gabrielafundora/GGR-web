@@ -30,10 +30,7 @@ export default async function AdminCoursesPage() {
           <tbody>
             {courses.map((course) => (
               <tr key={course.id} className="border-t border-border">
-                <td className="px-4 py-3 text-foreground">
-                  {course.title}
-                  {course.featured ? <span className="ml-2 text-xs text-accent">★</span> : null}
-                </td>
+                <td className="px-4 py-3 text-foreground">{course.title}</td>
                 <td className="px-4 py-3 text-muted">{course.modality ?? "—"}</td>
                 <td className="px-4 py-3 text-muted">{course.published ? "Publicado" : "Borrador"}</td>
                 <td className="px-4 py-3">

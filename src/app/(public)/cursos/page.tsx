@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function CursosPage() {
   const courses = await prisma.course.findMany({
     where: { published: true },
-    orderBy: [{ featured: "desc" }, { order: "asc" }],
+    orderBy: { order: "asc" },
   });
 
   return (
@@ -24,7 +24,7 @@ export default async function CursosPage() {
         <h1 className="mt-3 font-serif text-5xl text-foreground">Cursos y talleres</h1>
         <p className="mt-4 text-muted">
           Estos son los talleres y cursos que imparto. Aquí encontrarás una descripción de cada
-          uno; para inscribirte o conocer fechas y cupo, sigue el enlace de &ldquo;Más
+          uno; para inscribirte o conocer fechas y cupo, sigue el enlace de &ldquo;Solicita
           información&rdquo;.
         </p>
       </header>
