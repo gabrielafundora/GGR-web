@@ -11,7 +11,7 @@ export function BookCard({ book, authorName }: { book: Book; authorName: string 
     <div className="flex flex-col">
       <Link
         href={`/catalogo/${book.slug}`}
-        className="relative block aspect-2/3 w-full overflow-hidden bg-surface-2"
+        className="relative block aspect-2/3 w-full overflow-hidden bg-surface-2 shadow-[0_20px_35px_-15px_rgba(0,0,0,0.4)]"
       >
         {/* Portadas admin: URL arbitraria, por eso <img> en vez de next/image
             (evita tener que mantener un allowlist de dominios remotos). */}
