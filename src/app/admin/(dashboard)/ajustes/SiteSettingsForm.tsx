@@ -47,19 +47,6 @@ export function SiteSettingsForm({ settings }: { settings: SiteSettings | null }
       </section>
 
       <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
-        <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">Sobre la autora</h2>
-        <div className="mt-6 flex flex-col gap-4">
-          <ImageField label="Foto de la autora" name="authorPhotoUrl" defaultValue={settings?.authorPhotoUrl} />
-          <Textarea
-            label="Biografía (markdown)"
-            name="authorBio"
-            defaultValue={settings?.authorBio ?? ""}
-            className="min-h-48"
-          />
-        </div>
-      </section>
-
-      <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">Redes sociales (opcional)</h2>
         <div className="mt-6 flex flex-col gap-4">
           <Input

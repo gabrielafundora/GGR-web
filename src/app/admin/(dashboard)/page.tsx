@@ -15,7 +15,7 @@ export default async function AdminHomePage() {
     { label: "Libros", count: books, href: "/admin/libros" },
     { label: "Artículos", count: articles, href: "/admin/articulos" },
     { label: "Cursos y talleres", count: courses, href: "/admin/cursos" },
-    { label: "Ligas de interés", count: interestLinks, href: "/admin/ligas-de-interes" },
+    { label: "Ligas de interés", count: interestLinks, href: "/admin/sobre-mi" },
   ];
 
   return (

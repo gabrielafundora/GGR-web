@@ -105,8 +105,6 @@ export const siteSettingsSchema = z.object({
   heroHeadline: z.string().trim().optional().transform((v) => v || undefined),
   heroSubtext: z.string().trim().optional().transform((v) => v || undefined),
   heroImageUrl: optionalUrlField,
-  authorBio: z.string().trim().optional().transform((v) => v || undefined),
-  authorPhotoUrl: optionalUrlField,
   contactEmail: z
     .string()
     .trim()
@@ -124,3 +122,9 @@ export const siteSettingsSchema = z.object({
   amazonAuthorUrl: optionalUrlField,
 });
 export type SiteSettingsInput = z.infer<typeof siteSettingsSchema>;
+
+export const authorProfileSchema = z.object({
+  authorPhotoUrl: optionalUrlField,
+  authorBio: z.string().trim().optional().transform((v) => v || undefined),
+});
+export type AuthorProfileInput = z.infer<typeof authorProfileSchema>;

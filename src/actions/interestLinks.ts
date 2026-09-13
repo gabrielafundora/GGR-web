@@ -34,7 +34,7 @@ export async function createInterestLink(
   await prisma.interestLink.create({ data: parsed.data });
 
   revalidateInterestLinkPaths();
-  redirect("/admin/ligas-de-interes");
+  redirect("/admin/sobre-mi");
 }
 
 export async function updateInterestLink(
@@ -51,12 +51,12 @@ export async function updateInterestLink(
   await prisma.interestLink.update({ where: { id }, data: parsed.data });
 
   revalidateInterestLinkPaths();
-  redirect("/admin/ligas-de-interes");
+  redirect("/admin/sobre-mi");
 }
 
 export async function deleteInterestLink(id: string): Promise<void> {
   await requireAdmin();
   await prisma.interestLink.delete({ where: { id } });
   revalidateInterestLinkPaths();
-  redirect("/admin/ligas-de-interes");
+  redirect("/admin/sobre-mi");
 }

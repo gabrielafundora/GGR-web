@@ -6,7 +6,7 @@ import { InterestLinkForm } from "../../InterestLinkForm";
 
 export default async function EditInterestLinkPage({
   params,
-}: PageProps<"/admin/ligas-de-interes/[id]/editar">) {
+}: PageProps<"/admin/sobre-mi/ligas-de-interes/[id]/editar">) {
   const { id } = await params;
   const link = await prisma.interestLink.findUnique({ where: { id } });
   if (!link) notFound();
