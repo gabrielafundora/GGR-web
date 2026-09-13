@@ -30,6 +30,13 @@ export function BookForm({
       />
       <Input label="Título" name="title" defaultValue={book?.title} required />
       <Input label="Subtítulo (opcional)" name="subtitle" defaultValue={book?.subtitle ?? ""} />
+      <Input
+        label="Coautores (opcional)"
+        name="coautores"
+        defaultValue={book?.coautores?.join(", ") ?? ""}
+        placeholder="Fulano Pérez, Zutana Gómez"
+        hint="Además de Gabriela. Varios nombres separados por coma; déjalo vacío si el libro es solo suyo."
+      />
       <Textarea
         label="Descripción / sinopsis"
         name="description"

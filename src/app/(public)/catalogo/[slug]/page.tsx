@@ -48,6 +48,9 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
           {book.subtitle ? (
             <p className="mt-2 font-serif text-lg italic text-muted">{book.subtitle}</p>
           ) : null}
+          {book.coautores.length > 0 ? (
+            <p className="mt-2 text-sm text-muted">Con {book.coautores.join(", ")}</p>
+          ) : null}
 
           <p className="mt-6 whitespace-pre-line text-base leading-relaxed text-muted">
             {book.description}

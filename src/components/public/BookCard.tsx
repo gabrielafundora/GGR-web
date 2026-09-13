@@ -30,6 +30,9 @@ export function BookCard({ book }: { book: Book }) {
           {book.subtitle ? (
             <p className="mt-1 font-serif text-sm italic text-muted">{book.subtitle}</p>
           ) : null}
+          {book.coautores.length > 0 ? (
+            <p className="mt-1 text-xs text-muted">Con {book.coautores.join(", ")}</p>
+          ) : null}
         </div>
 
         <LinkButton href={book.amazonUrl} external variant="primary" className="mt-auto w-full">
