@@ -44,7 +44,7 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
 
   return (
     <div className="pb-24">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
         <Link
           href="/catalogo"
           className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted hover:text-accent"
@@ -130,7 +130,7 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
       </div>
 
       {otherBooks.length > 0 ? (
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="border-t border-border pt-16">
             <p className="kicker text-accent-muted">Sigue explorando</p>
             <h2 className="mt-3 font-serif text-3xl text-foreground">Más libros</h2>

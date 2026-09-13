@@ -17,7 +17,7 @@ export async function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-background/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-5 sm:px-6">
         <Link href="/" className="flex items-center gap-2.5 font-serif text-xl italic tracking-tight text-foreground">
           <img src="/images/brand/logo-negro.png" alt="" className="h-8 w-auto" />
           {siteName}

@@ -51,7 +51,7 @@ export default async function HomePage() {
       />
 
       {/* Claro */}
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
           <div>
             <p className="kicker text-accent-muted">Obra publicada</p>
@@ -73,7 +73,7 @@ export default async function HomePage() {
 
       {/* Oscuro: cifras */}
       <section className="bg-ink text-ink-foreground">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-3 sm:px-6">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-3 sm:px-6">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center sm:text-left">
               <p className="font-serif text-5xl text-accent">{stat.value}</p>
@@ -86,7 +86,7 @@ export default async function HomePage() {
       </section>
 
       {/* Claro: sobre mí */}
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           {settings?.authorPhotoUrl ? (
             <div className="aspect-[4/5] w-full overflow-hidden bg-surface-2">
@@ -118,7 +118,7 @@ export default async function HomePage() {
       {/* Oscuro */}
       {latestArticles.length > 0 ? (
         <section className="bg-ink text-ink-foreground">
-          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-white/10 pb-6">
               <div>
                 <p className="kicker text-accent">El blog</p>
@@ -141,7 +141,7 @@ export default async function HomePage() {
       ) : null}
 
       {/* Claro */}
-      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="grid grid-cols-1 items-center gap-10 border border-border bg-surface-2 px-8 py-16 sm:px-16 lg:grid-cols-[1fr_auto]">
           <div>
             <p className="kicker text-accent-muted">Talleres literarios</p>
