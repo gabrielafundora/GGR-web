@@ -9,7 +9,7 @@
  * ritmo claro/oscuro en Home), independiente del acento.
  */
 @theme inline {
-  --color-background: #f7f2ea;
+  --color-background: #f5f2f1;
   --color-surface: #ffffff;
   --color-surface-2: #efe7d8;
   --color-foreground: #1c1912;
