@@ -26,11 +26,14 @@ export async function Footer() {
         </p>
 
         <div className="mt-12 flex flex-col gap-8 border-t border-white/10 pt-8 sm:flex-row sm:items-end sm:justify-between">
-          <div>
-            <p className="font-serif text-lg italic">{siteName}</p>
-            {settings?.tagline ? (
-              <p className="mt-1 text-sm text-ink-muted">{settings.tagline}</p>
-            ) : null}
+          <div className="flex items-center gap-2.5">
+            <img src="/images/brand/logo-naranja.png" alt="" className="h-8 w-auto" />
+            <div>
+              <p className="font-serif text-lg italic">{siteName}</p>
+              {settings?.tagline ? (
+                <p className="mt-1 text-sm text-ink-muted">{settings.tagline}</p>
+              ) : null}
+            </div>
           </div>
 
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold uppercase tracking-[0.1em] text-ink-muted">
