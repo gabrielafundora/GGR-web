@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { EB_Garamond, Inter } from "next/font/google";
+import Script from "next/script";
 
 import "./globals.css";
 
@@ -33,7 +34,17 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={`${ebGaramond.variable} ${inter.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-background text-foreground">{children}</body>
+      <body className="flex min-h-full flex-col bg-background text-foreground">
+        {children}
+        {/* strategy="beforeInteractive": Next.js lo inyecta siempre dentro
+            del <head> del HTML servido (no en el body), que es donde Ahrefs
+            necesita encontrarlo para verificar el sitio. */}
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="KT7n5LkCXqQNirESOtSQrw"
+          strategy="beforeInteractive"
+        />
+      </body>
     </html>
   );
 }
