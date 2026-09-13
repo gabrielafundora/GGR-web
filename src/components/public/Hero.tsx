@@ -28,7 +28,7 @@ export function Hero({
 
       <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
         {tagline ? <p className="kicker text-accent">{tagline}</p> : null}
-        <h1 className="mt-5 max-w-3xl font-serif text-6xl leading-[1.05] sm:text-7xl md:text-8xl">
+        <h1 className="mt-5 max-w-3xl font-serif text-6xl font-bold leading-[1.05] sm:text-7xl md:text-8xl">
           {firstName}
           {lastNames ? (
             <>
