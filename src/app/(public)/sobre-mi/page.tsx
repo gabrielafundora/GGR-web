@@ -35,15 +35,15 @@ export default async function SobreMiPage() {
               <p className="mt-4 font-serif text-lg italic text-muted">{settings.tagline}</p>
             ) : null}
           </header>
-
-          <div className="mt-10">
-            {settings?.authorBio ? (
-              <MarkdownContent content={settings.authorBio} />
-            ) : (
-              <p className="text-muted">Próximamente encontrarás aquí la biografía completa.</p>
-            )}
-          </div>
         </div>
+      </div>
+
+      <div className="mt-16 max-w-3xl">
+        {settings?.authorBio ? (
+          <MarkdownContent content={settings.authorBio} className="prose-lg" />
+        ) : (
+          <p className="text-muted">Próximamente encontrarás aquí la biografía completa.</p>
+        )}
       </div>
     </div>
   );
