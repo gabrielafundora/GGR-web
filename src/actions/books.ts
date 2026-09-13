@@ -23,6 +23,7 @@ function parseBookForm(formData: FormData) {
     idioma: formData.get("idioma"),
     paginas: formData.get("paginas") || undefined,
     isbn: formData.get("isbn"),
+    excerptMd: formData.get("excerptMd"),
     coautores: formData.get("coautores"),
     published: formData.get("published") === "on",
     order: formData.get("order") || 0,

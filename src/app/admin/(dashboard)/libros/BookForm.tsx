@@ -1,12 +1,13 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import type { Book } from "@prisma/client";
 
 import { initialActionState } from "@/lib/action-state";
 import { Input, Textarea, Checkbox } from "@/components/ui/Field";
 import { ImageField } from "@/components/admin/ImageField";
 import { Button } from "@/components/ui/Button";
+import { MarkdownContent } from "@/components/public/MarkdownContent";
 import type { ActionState } from "@/lib/action-state";
 
 export function BookForm({
@@ -17,6 +18,8 @@ export function BookForm({
   action: (prevState: ActionState, formData: FormData) => Promise<ActionState>;
 }) {
   const [state, formAction, pending] = useActionState(action, initialActionState);
+  const [excerpt, setExcerpt] = useState(book?.excerptMd ?? "");
+  const [excerptPreview, setExcerptPreview] = useState(false);
 
   return (
     <form action={formAction} className="flex max-w-2xl flex-col gap-5">
@@ -43,6 +46,41 @@ export function BookForm({
         defaultValue={book?.description}
         required
       />
+
+      <div>
+        <div className="mb-1.5 flex items-center justify-between">
+          <label htmlFor="excerptMd" className="text-sm font-medium text-foreground">
+            Fragmento gratis (opcional, markdown)
+          </label>
+          <button
+            type="button"
+            onClick={() => setExcerptPreview((v) => !v)}
+            className="text-xs text-accent hover:text-accent-hover"
+          >
+            {excerptPreview ? "Volver a editar" : "Vista previa"}
+          </button>
+        </div>
+        {excerptPreview ? (
+          <div className="rounded-lg border border-border bg-surface p-4">
+            <MarkdownContent content={excerpt} />
+          </div>
+        ) : (
+          <textarea
+            id="excerptMd"
+            name="excerptMd"
+            value={excerpt}
+            onChange={(e) => setExcerpt(e.target.value)}
+            className="min-h-48 w-full resize-y rounded-lg border border-border bg-surface px-3 py-2 font-mono text-[13px] text-foreground placeholder:text-muted focus:border-accent focus:outline-none"
+            placeholder={"Un adelanto del libro, en **markdown**.\n\nDéjalo vacío si este libro no ofrece fragmento."}
+          />
+        )}
+        {excerptPreview ? <input type="hidden" name="excerptMd" value={excerpt} /> : null}
+        <p className="mt-1.5 text-xs text-muted">
+          Si lo llenas, se muestra completo en la página pública del libro para que cualquiera lo
+          lea gratis.
+        </p>
+      </div>
+
       <ImageField
         label="Portada"
         name="coverImageUrl"
