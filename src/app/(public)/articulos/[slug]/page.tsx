@@ -18,9 +18,9 @@ export async function generateMetadata({
   const article = await getArticle(slug);
   if (!article) return { title: "Artículo no encontrado" };
   return buildEntityMetadata({
-    title: article.title,
-    description: article.excerpt,
-    imageUrl: article.coverImageUrl,
+    title: article.metaTitle ?? article.title,
+    description: article.metaDescription ?? article.excerpt,
+    imageUrl: article.metaImageUrl ?? article.coverImageUrl,
   });
 }
 

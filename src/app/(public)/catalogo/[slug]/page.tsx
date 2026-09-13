@@ -19,9 +19,9 @@ export async function generateMetadata({
   const book = await getBook(slug);
   if (!book) return { title: "Libro no encontrado" };
   return buildEntityMetadata({
-    title: book.title,
-    description: book.description,
-    imageUrl: book.coverImageUrl,
+    title: book.metaTitle ?? book.title,
+    description: book.metaDescription ?? book.description,
+    imageUrl: book.metaImageUrl ?? book.coverImageUrl,
   });
 }
 

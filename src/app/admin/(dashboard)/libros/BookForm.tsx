@@ -113,6 +113,30 @@ export function BookForm({
         />
         <Input label="ISBN (opcional)" name="isbn" defaultValue={book?.isbn ?? ""} />
       </div>
+
+      <div className="flex flex-col gap-4 rounded-2xl border border-border bg-surface p-6">
+        <h2 className="font-serif text-lg text-foreground">Metadatos (SEO, opcional)</h2>
+        <p className="text-xs text-muted">
+          Si los dejas vacíos, se usan automáticamente el título, la descripción y la portada de
+          este libro.
+        </p>
+        <Input
+          label="Title (título de la pestaña)"
+          name="metaTitle"
+          defaultValue={book?.metaTitle ?? ""}
+        />
+        <Textarea
+          label="Meta description"
+          name="metaDescription"
+          defaultValue={book?.metaDescription ?? ""}
+        />
+        <ImageField
+          label="Imagen Open Graph (opcional)"
+          name="metaImageUrl"
+          defaultValue={book?.metaImageUrl}
+        />
+      </div>
+
       <div className="grid grid-cols-2 gap-4">
         <Input label="Orden" name="order" type="number" defaultValue={book?.order ?? 0} />
         <div className="flex flex-col justify-end gap-2 pb-2">

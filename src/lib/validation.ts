@@ -44,6 +44,11 @@ export const bookSchema = z.object({
         .map((name) => name.trim())
         .filter(Boolean)
     ),
+  // Metadatos (SEO/redes) opcionales: si se dejan vacíos, la página pública
+  // arma el title/description/og:image a partir de los campos de arriba.
+  metaTitle: z.string().trim().optional().transform((v) => v || undefined),
+  metaDescription: z.string().trim().optional().transform((v) => v || undefined),
+  metaImageUrl: optionalUrlField,
   published: z.boolean().default(true),
   order: z.coerce.number().int().default(0),
 });
@@ -55,6 +60,9 @@ export const articleSchema = z.object({
   excerpt: z.string().trim().min(1, "El extracto es obligatorio"),
   contentMd: z.string().trim().min(1, "El contenido es obligatorio"),
   coverImageUrl: optionalUrlField,
+  metaTitle: z.string().trim().optional().transform((v) => v || undefined),
+  metaDescription: z.string().trim().optional().transform((v) => v || undefined),
+  metaImageUrl: optionalUrlField,
   published: z.boolean().default(true),
   publishedAt: z.string().trim().optional().transform((v) => v || undefined),
 });

@@ -30,38 +30,44 @@ model AdminUser {
 }
 
 model Book {
-  id            String   @id @default(cuid())
-  slug          String   @unique
-  title         String
-  subtitle      String?
-  description   String
-  coverImageUrl String
-  amazonUrl     String
-  year          Int?
-  genre         String?
-  editorial     String?
-  idioma        String?
-  paginas       Int?
-  isbn          String?
-  coautores     String[] @default([])
-  excerptMd     String?
-  published     Boolean  @default(true)
-  order         Int      @default(0)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  subtitle        String?
+  description     String
+  coverImageUrl   String
+  amazonUrl       String
+  year            Int?
+  genre           String?
+  editorial       String?
+  idioma          String?
+  paginas         Int?
+  isbn            String?
+  coautores       String[] @default([])
+  excerptMd       String?
+  metaTitle       String?
+  metaDescription String?
+  metaImageUrl    String?
+  published       Boolean  @default(true)
+  order           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 }
 
 model Article {
-  id            String    @id @default(cuid())
-  slug          String    @unique
-  title         String
-  excerpt       String
-  contentMd     String
-  coverImageUrl String?
-  published     Boolean   @default(true)
-  publishedAt   DateTime?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  id              String    @id @default(cuid())
+  slug            String    @unique
+  title           String
+  excerpt         String
+  contentMd       String
+  coverImageUrl   String?
+  metaTitle       String?
+  metaDescription String?
+  metaImageUrl    String?
+  published       Boolean   @default(true)
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
 }
 
 model Course {
