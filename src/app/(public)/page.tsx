@@ -41,10 +41,11 @@ export default async function HomePage() {
   return (
     <>
       <Hero
-        headline={settings?.heroHeadline ?? "Historias que se quedan contigo"}
-        subtext={
+        name={settings?.siteName ?? "Gabriela Guerra Rey"}
+        tagline={settings?.heroHeadline ?? "Novelista y tallerista"}
+        description={
           settings?.heroSubtext ??
-          "Novelista y tallerista. Descubre mis libros, artículos sobre el oficio de escribir y los talleres literarios que imparto."
+          "Descubre mis libros, artículos sobre el oficio de escribir y los talleres literarios que imparto."
         }
         imageUrl={settings?.heroImageUrl ?? settings?.authorPhotoUrl}
       />

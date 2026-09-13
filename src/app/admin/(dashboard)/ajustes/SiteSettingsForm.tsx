@@ -23,13 +23,23 @@ export function SiteSettingsForm({ settings }: { settings: SiteSettings | null }
 
       <section className="flex flex-col gap-4">
         <h2 className="font-serif text-xl text-foreground">Portada (Inicio)</h2>
-        <Input label="Titular del hero" name="heroHeadline" defaultValue={settings?.heroHeadline ?? ""} />
-        <Textarea label="Subtexto del hero" name="heroSubtext" defaultValue={settings?.heroSubtext ?? ""} />
+        <Input
+          label="Etiqueta sobre el nombre"
+          name="heroHeadline"
+          defaultValue={settings?.heroHeadline ?? ""}
+          hint='Ej. "Novelista y tallerista". El nombre del sitio (arriba) se muestra en grande debajo de esta etiqueta.'
+        />
+        <Textarea
+          label="Descripción breve del hero"
+          name="heroSubtext"
+          defaultValue={settings?.heroSubtext ?? ""}
+          hint="Uno o dos renglones debajo del nombre."
+        />
         <ImageField
           label="Imagen de fondo del hero (opcional)"
           name="heroImageUrl"
           defaultValue={settings?.heroImageUrl}
-          hint="Se muestra detrás del titular en la portada de Inicio, con una capa oscura encima para que el texto se lea bien."
+          hint="Se muestra detrás del nombre en la portada de Inicio, sin ninguna capa encima — elige una foto donde el texto blanco se siga leyendo bien."
         />
       </section>
 
