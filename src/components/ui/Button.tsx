@@ -2,13 +2,20 @@ import Link from "next/link";
 import { clsx } from "clsx";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
-type Variant = "primary" | "outline" | "link";
+type Variant = "primary" | "outline" | "link" | "outlineInverse" | "linkInverse";
 
 const variantClasses: Record<Variant, string> = {
   primary: "bg-accent text-ink hover:bg-accent-hover px-6 py-3",
   outline:
     "border border-foreground text-foreground px-6 py-3 hover:bg-foreground hover:text-background",
   link: "text-foreground underline decoration-accent decoration-2 underline-offset-4 hover:text-accent px-0 py-0",
+  // Mismos "outline"/"link" pero para usar sobre fondos oscuros (hero con
+  // imagen, secciones "ink"): texto e borde en el tono claro en vez del
+  // oscuro por defecto.
+  outlineInverse:
+    "border border-ink-foreground text-ink-foreground px-6 py-3 hover:bg-ink-foreground hover:text-ink",
+  linkInverse:
+    "text-ink-foreground underline decoration-accent decoration-2 underline-offset-4 hover:text-accent px-0 py-0",
 };
 
 const base =

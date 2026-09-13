@@ -10,31 +10,32 @@ export function Hero({
   imageUrl?: string | null;
 }) {
   return (
-    <section className="border-b border-border">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-4 py-16 sm:px-6 sm:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16 lg:py-28">
-        <div className={imageUrl ? "lg:order-1" : ""}>
-          <p className="kicker text-accent-muted">Autora · Gabriela Guerra Rey</p>
-          <h1 className="mt-5 max-w-xl font-serif text-5xl leading-[1.05] text-foreground sm:text-6xl md:text-7xl">
-            {headline}
-          </h1>
-          {subtext ? (
-            <p className="mt-7 max-w-md text-base leading-relaxed text-muted">{subtext}</p>
-          ) : null}
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-            <LinkButton href="/catalogo" variant="primary">
-              Ver catálogo
-            </LinkButton>
-            <LinkButton href="/sobre-mi" variant="link">
-              Sobre la autora <ButtonArrow />
-            </LinkButton>
-          </div>
-        </div>
+    <section className="relative overflow-hidden bg-ink text-ink-foreground">
+      {imageUrl ? (
+        <>
+          <img src={imageUrl} alt="" className="absolute inset-0 h-full w-full object-cover" />
+          {/* Degradado: más oscuro donde va el texto (izquierda), más
+              transparente hacia la derecha para que la foto se siga viendo. */}
+          <div className="absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/30" />
+        </>
+      ) : null}
 
-        {imageUrl ? (
-          <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface-2 lg:order-2">
-            <img src={imageUrl} alt="" className="h-full w-full object-cover" />
-          </div>
+      <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
+        <p className="kicker text-accent">Autora · Gabriela Guerra Rey</p>
+        <h1 className="mt-5 max-w-2xl font-serif text-5xl leading-[1.05] sm:text-6xl md:text-7xl">
+          {headline}
+        </h1>
+        {subtext ? (
+          <p className="mt-7 max-w-md text-base leading-relaxed text-ink-muted">{subtext}</p>
         ) : null}
+        <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <LinkButton href="/catalogo" variant="primary">
+            Ver catálogo
+          </LinkButton>
+          <LinkButton href="/sobre-mi" variant="linkInverse">
+            Sobre la autora <ButtonArrow />
+          </LinkButton>
+        </div>
       </div>
     </section>
   );
