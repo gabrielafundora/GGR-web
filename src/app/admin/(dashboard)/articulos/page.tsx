@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 
 export default async function AdminArticlesPage() {
   const articles = await prisma.article.findMany({
-    orderBy: [{ order: "asc" }, { createdAt: "desc" }],
+    orderBy: { publishedAt: "desc" },
   });
 
   return (

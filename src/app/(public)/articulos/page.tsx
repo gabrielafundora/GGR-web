@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ArticulosPage() {
   const articles = await prisma.article.findMany({
     where: { published: true },
-    orderBy: [{ order: "asc" }, { publishedAt: "desc" }],
+    orderBy: { publishedAt: "desc" },
   });
 
   return (

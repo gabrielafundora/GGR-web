@@ -25,7 +25,7 @@ export default async function HomePage() {
     }),
     prisma.article.findMany({
       where: { published: true },
-      orderBy: { order: "asc" },
+      orderBy: { publishedAt: "desc" },
       take: 3,
     }),
   ]);

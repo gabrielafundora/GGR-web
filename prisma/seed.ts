@@ -101,7 +101,6 @@ async function seedArticles() {
       excerpt: "Algunas reflexiones sobre la disciplina, la duda y la constancia de escribir cada día.",
       coverImageUrl: "/images/articles/article-1.svg",
       published: true,
-      order: 0,
       publishedAt: new Date("2024-03-10"),
       contentMd: `Escribir no es solo esperar la inspiración: es sentarse, todos los días, aunque **no tengamos ganas**.
 
@@ -130,7 +129,6 @@ Con el tiempo, esas preguntas se vuelven el verdadero primer borrador.
       excerpt: "De dónde vienen los personajes que terminan habitando una novela durante años.",
       coverImageUrl: "/images/articles/article-2.svg",
       published: true,
-      order: 1,
       publishedAt: new Date("2023-08-22"),
       contentMd: `Casi nunca nacen completos. Empiezan con un gesto, una frase suelta, una imagen que no me suelta.
 
@@ -151,7 +149,6 @@ El resto lo descubro *mientras* escribo, no antes.
       excerpt: "Por qué la lectura atenta es, para mí, el taller literario más importante.",
       coverImageUrl: "/images/articles/article-3.svg",
       published: true,
-      order: 2,
       publishedAt: new Date("2022-11-02"),
       contentMd: `No conozco un solo autor que no sea, antes que nada, un lector obsesivo.
 

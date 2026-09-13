@@ -18,7 +18,6 @@ function parseArticleForm(formData: FormData) {
     coverImageUrl: formData.get("coverImageUrl"),
     published: formData.get("published") === "on",
     publishedAt: formData.get("publishedAt"),
-    order: formData.get("order") || 0,
   });
 }
 

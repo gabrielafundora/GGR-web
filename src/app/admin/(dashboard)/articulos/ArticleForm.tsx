@@ -78,15 +78,12 @@ export function ArticleForm({
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        <Input
-          label="Fecha de publicación"
-          name="publishedAt"
-          type="date"
-          defaultValue={toDateInputValue(article?.publishedAt ?? article?.createdAt)}
-        />
-        <Input label="Orden" name="order" type="number" defaultValue={article?.order ?? 0} />
-      </div>
+      <Input
+        label="Fecha de publicación"
+        name="publishedAt"
+        type="date"
+        defaultValue={toDateInputValue(article?.publishedAt ?? article?.createdAt)}
+      />
       <Checkbox label="Publicado" name="published" defaultChecked={article?.published ?? true} />
 
       {state.error ? <p className="text-sm text-accent">{state.error}</p> : null}

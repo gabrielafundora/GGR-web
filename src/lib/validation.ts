@@ -57,7 +57,6 @@ export const articleSchema = z.object({
   coverImageUrl: optionalUrlField,
   published: z.boolean().default(true),
   publishedAt: z.string().trim().optional().transform((v) => v || undefined),
-  order: z.coerce.number().int().default(0),
 });
 export type ArticleInput = z.infer<typeof articleSchema>;
 
