@@ -14,6 +14,12 @@ export function Hero({
   description?: string | null;
   imageUrl?: string | null;
 }) {
+  // Primer nombre en su propia línea, el resto (apellidos) en la
+  // siguiente — así el nombre siempre parte igual, sin depender de dónde
+  // el navegador decida hacer el salto de línea.
+  const [firstName, ...rest] = name.split(" ");
+  const lastNames = rest.join(" ");
+
   return (
     <section className="relative overflow-hidden bg-ink text-ink-foreground">
       {imageUrl ? (
@@ -23,7 +29,13 @@ export function Hero({
       <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
         {tagline ? <p className="kicker text-accent">{tagline}</p> : null}
         <h1 className="mt-5 max-w-3xl font-serif text-6xl leading-[1.05] sm:text-7xl md:text-8xl">
-          {name}
+          {firstName}
+          {lastNames ? (
+            <>
+              <br />
+              {lastNames}
+            </>
+          ) : null}
         </h1>
         {description ? (
           <p className="mt-7 max-w-md text-base leading-relaxed text-ink-muted">{description}</p>
