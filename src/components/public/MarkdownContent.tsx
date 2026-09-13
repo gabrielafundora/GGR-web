@@ -14,7 +14,7 @@ export function MarkdownContent({
   return (
     <div
       className={clsx(
-        "prose max-w-none prose-headings:font-serif prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-blockquote:border-accent prose-blockquote:text-muted",
+        "prose max-w-none prose-headings:font-serif prose-p:text-muted prose-p:leading-relaxed prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-blockquote:border-accent prose-blockquote:text-muted",
         className
       )}
     >
