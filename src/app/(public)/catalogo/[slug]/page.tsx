@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
 import { buildEntityMetadata } from "@/lib/metadata";
-import { Badge } from "@/components/ui/Card";
 import { LinkButton } from "@/components/ui/Button";
 
 async function getBook(slug: string) {
@@ -37,7 +36,6 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
             alt={`Portada de ${book.title}`}
             className="h-full w-full object-cover"
           />
-          {book.featured ? <Badge className="absolute left-3 top-3">Destacado</Badge> : null}
         </div>
 
         <div>

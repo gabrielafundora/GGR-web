@@ -30,10 +30,7 @@ export default async function AdminBooksPage() {
           <tbody>
             {books.map((book) => (
               <tr key={book.id} className="border-t border-border">
-                <td className="px-4 py-3 text-foreground">
-                  {book.title}
-                  {book.featured ? <span className="ml-2 text-xs text-accent">★</span> : null}
-                </td>
+                <td className="px-4 py-3 text-foreground">{book.title}</td>
                 <td className="px-4 py-3 text-muted">{book.slug}</td>
                 <td className="px-4 py-3 text-muted">{book.published ? "Publicado" : "Borrador"}</td>
                 <td className="px-4 py-3">

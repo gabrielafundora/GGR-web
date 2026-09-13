@@ -20,7 +20,7 @@ export default async function HomePage() {
     prisma.siteSettings.findUnique({ where: { id: 1 } }),
     prisma.book.findMany({
       where: { published: true },
-      orderBy: [{ featured: "desc" }, { order: "asc" }],
+      orderBy: { order: "asc" },
       take: 4,
     }),
     prisma.article.findMany({
