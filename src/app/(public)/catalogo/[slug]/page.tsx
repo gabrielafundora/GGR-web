@@ -7,7 +7,6 @@ import { buildEntityMetadata } from "@/lib/metadata";
 import { formatAuthorList } from "@/lib/format";
 import { LinkButton } from "@/components/ui/Button";
 import { BookCard } from "@/components/public/BookCard";
-import { ExcerptReader } from "@/components/public/ExcerptReader";
 
 async function getBook(slug: string) {
   return prisma.book.findUnique({ where: { slug } });
@@ -116,24 +115,19 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
               {book.description}
             </p>
 
-            <LinkButton href={book.amazonUrl} external variant="primary" className="mt-8">
-              Ver en Amazon
-            </LinkButton>
-          </div>
-        </div>
-      </div>
-
-      {book.excerptMd ? (
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="border-t border-border pt-16">
-            <p className="kicker text-accent-muted">Fragmento gratis</p>
-            <h2 className="mt-3 font-serif text-3xl text-foreground">Lee un adelanto</h2>
-            <div className="mt-8 max-w-3xl">
-              <ExcerptReader content={book.excerptMd} />
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <LinkButton href={book.amazonUrl} external variant="primary">
+                Ver en Amazon
+              </LinkButton>
+              {book.excerptMd ? (
+                <LinkButton href={`/catalogo/${book.slug}/fragmento`} variant="outline">
+                  Leer fragmento gratis
+                </LinkButton>
+              ) : null}
             </div>
           </div>
         </div>
-      ) : null}
+      </div>
 
       {otherBooks.length > 0 ? (
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
