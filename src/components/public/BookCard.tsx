@@ -1,12 +1,12 @@
 import Link from "next/link";
 import type { Book } from "@prisma/client";
 
-import { Badge, Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Card";
 import { LinkButton } from "@/components/ui/Button";
 
 export function BookCard({ book }: { book: Book }) {
   return (
-    <Card className="flex flex-col overflow-hidden">
+    <div className="flex flex-col">
       <Link
         href={`/catalogo/${book.slug}`}
         className="relative block aspect-2/3 w-full overflow-hidden bg-surface-2"
@@ -22,7 +22,7 @@ export function BookCard({ book }: { book: Book }) {
         {book.featured ? <Badge className="absolute left-3 top-3">Destacado</Badge> : null}
       </Link>
 
-      <div className="flex flex-1 flex-col gap-3 p-5">
+      <div className="flex flex-1 flex-col gap-3 pt-4">
         <div>
           <h3 className="font-serif text-xl text-foreground">
             <Link href={`/catalogo/${book.slug}`} className="hover:text-accent">
@@ -34,12 +34,10 @@ export function BookCard({ book }: { book: Book }) {
           ) : null}
         </div>
 
-        <p className="line-clamp-3 flex-1 text-sm text-muted">{book.description}</p>
-
-        <LinkButton href={book.amazonUrl} external variant="primary" className="mt-2 w-full">
+        <LinkButton href={book.amazonUrl} external variant="primary" className="mt-auto w-full">
           Ver en Amazon
         </LinkButton>
       </div>
-    </Card>
+    </div>
   );
 }
