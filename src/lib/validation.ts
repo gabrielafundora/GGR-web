@@ -126,5 +126,6 @@ export type SiteSettingsInput = z.infer<typeof siteSettingsSchema>;
 export const authorProfileSchema = z.object({
   authorPhotoUrl: optionalUrlField,
   authorBio: z.string().trim().optional().transform((v) => v || undefined),
+  authorQuote: z.string().trim().optional().transform((v) => v || undefined),
 });
 export type AuthorProfileInput = z.infer<typeof authorProfileSchema>;

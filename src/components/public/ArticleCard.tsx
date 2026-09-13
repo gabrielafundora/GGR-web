@@ -30,7 +30,7 @@ export function ArticleCard({ article }: { article: Article }) {
             {article.title}
           </Link>
         </h3>
-        <p className="line-clamp-3 flex-1 text-sm text-muted">{article.excerpt}</p>
+        <p className="text-sm text-muted">{article.excerpt}</p>
         <Link
           href={`/articulos/${article.slug}`}
           className="group mt-2 inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-foreground hover:text-accent"

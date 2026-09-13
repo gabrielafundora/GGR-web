@@ -85,6 +85,8 @@ export async function Footer() {
               {settings?.contactEmail ? (
                 <a
                   href={`mailto:${settings.contactEmail}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label="Correo"
                   title="Correo"
                   className="text-ink-muted hover:text-accent"

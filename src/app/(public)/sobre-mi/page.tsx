@@ -19,7 +19,7 @@ export default async function SobreMiPage() {
   ]);
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,320px)_1fr]">
         {settings?.authorPhotoUrl ? (
           <div className="aspect-[4/5] w-full overflow-hidden bg-surface-2">
@@ -37,6 +37,11 @@ export default async function SobreMiPage() {
             <h1 className="mt-3 font-serif text-5xl text-foreground">{settings?.siteName ?? "Gabriela Guerra Rey"}</h1>
             {settings?.tagline ? (
               <p className="mt-4 font-serif text-lg italic text-muted">{settings.tagline}</p>
+            ) : null}
+            {settings?.authorQuote ? (
+              <p className="mt-6 max-w-md font-serif text-2xl italic leading-snug text-foreground">
+                &ldquo;{settings.authorQuote}&rdquo;
+              </p>
             ) : null}
           </header>
         </div>

@@ -52,17 +52,18 @@ export function LinkButton({
   external?: boolean;
 }) {
   const classes = clsx(base, variantClasses[variant], className);
-  // mailto:/tel: no son páginas a navegar — deben abrirse en la misma
-  // pestaña (el navegador los delega al programa de correo/teléfono).
-  // Con target="_blank" algunos navegadores no completan la acción.
-  if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+  // mailto: se comporta como un link externo: abre en pestaña nueva (el
+  // navegador la delega al programa de correo, pero deja la pestaña del
+  // sitio intacta). tel: en cambio se abre en la misma pestaña — marcar un
+  // teléfono no necesita una pestaña nueva y hoy no hay ningún uso de tel:.
+  if (href.startsWith("tel:")) {
     return (
       <a href={href} className={classes}>
         {children}
       </a>
     );
   }
-  if (external) {
+  if (external || href.startsWith("mailto:")) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
         {children}

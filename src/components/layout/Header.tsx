@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { prisma } from "@/lib/prisma";
 import { MobileNav } from "@/components/layout/MobileNav";
+import { HeaderNav } from "@/components/layout/HeaderNav";
 
 export const NAV_LINKS = [
   { href: "/", label: "Inicio" },
@@ -23,17 +24,7 @@ export async function Header() {
           {siteName}
         </Link>
 
-        <nav className="hidden items-center gap-9 md:flex">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-foreground/70 transition-colors hover:text-accent"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <HeaderNav links={NAV_LINKS} />
 
         <MobileNav links={NAV_LINKS} />
       </div>

@@ -51,6 +51,7 @@ export async function updateAuthorProfile(
   const parsed = authorProfileSchema.safeParse({
     authorPhotoUrl: formData.get("authorPhotoUrl"),
     authorBio: formData.get("authorBio"),
+    authorQuote: formData.get("authorQuote"),
   });
   if (!parsed.success) {
     return { error: parsed.error.issues[0]?.message ?? "Datos inválidos" };
