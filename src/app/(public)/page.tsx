@@ -71,6 +71,25 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Claro */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
+        <div className="grid grid-cols-1 items-center gap-10 border border-border bg-surface-2 px-8 py-16 sm:px-16 lg:grid-cols-[1fr_auto]">
+          <div>
+            <p className="kicker text-accent-muted">Talleres literarios</p>
+            <h2 className="mt-3 max-w-md font-serif text-3xl leading-tight text-foreground sm:text-4xl">
+              Escribe con <span className="italic">acompañamiento</span> y estructura.
+            </h2>
+            <p className="mt-4 max-w-md text-muted">
+              Conoce los talleres que imparto para quienes quieren empezar o profundizar en su
+              escritura.
+            </p>
+          </div>
+          <LinkButton href="/cursos" variant="primary" className="w-fit">
+            Ver cursos y talleres
+          </LinkButton>
+        </div>
+      </section>
+
       {/* Oscuro: cifras */}
       <section className="bg-ink text-ink-foreground">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-3 sm:px-6">
@@ -139,25 +158,6 @@ export default async function HomePage() {
           </div>
         </section>
       ) : null}
-
-      {/* Claro */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
-        <div className="grid grid-cols-1 items-center gap-10 border border-border bg-surface-2 px-8 py-16 sm:px-16 lg:grid-cols-[1fr_auto]">
-          <div>
-            <p className="kicker text-accent-muted">Talleres literarios</p>
-            <h2 className="mt-3 max-w-md font-serif text-3xl leading-tight text-foreground sm:text-4xl">
-              Escribe con <span className="italic">acompañamiento</span> y estructura.
-            </h2>
-            <p className="mt-4 max-w-md text-muted">
-              Conoce los talleres que imparto para quienes quieren empezar o profundizar en su
-              escritura.
-            </p>
-          </div>
-          <LinkButton href="/cursos" variant="primary" className="w-fit">
-            Ver cursos y talleres
-          </LinkButton>
-        </div>
-      </section>
     </>
   );
 }
