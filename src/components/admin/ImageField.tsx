@@ -22,7 +22,7 @@ export function ImageField({
 }) {
   const fieldId = id ?? name;
   const [url, setUrl] = useState(defaultValue ?? "");
-  const [mode, setMode] = useState<"url" | "upload">("url");
+  const [mode, setMode] = useState<"url" | "upload">("upload");
   const [pending, startTransition] = useTransition();
   const [error, setError] = useState<string>();
 
@@ -51,17 +51,17 @@ export function ImageField({
         <div className="flex gap-1 rounded-full border border-border p-0.5 text-xs">
           <button
             type="button"
+            onClick={() => setMode("upload")}
+            className={`rounded-full px-3 py-1 ${mode === "upload" ? "bg-accent text-black" : "text-muted"}`}
+          >
+            Subir imagen
+          </button>
+          <button
+            type="button"
             onClick={() => setMode("url")}
             className={`rounded-full px-3 py-1 ${mode === "url" ? "bg-accent text-black" : "text-muted"}`}
           >
             URL
-          </button>
-          <button
-            type="button"
-            onClick={() => setMode("upload")}
-            className={`rounded-full px-3 py-1 ${mode === "upload" ? "bg-accent text-black" : "text-muted"}`}
-          >
-            Subir (solo dev local)
           </button>
         </div>
       </div>
