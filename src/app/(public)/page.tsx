@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [settings, featuredBooks, latestArticles] = await Promise.all([
+  const [settings, featuredBooks, latestArticles, bookCount, courseCount] = await Promise.all([
     prisma.siteSettings.findUnique({ where: { id: 1 } }),
     prisma.book.findMany({
       where: { published: true },
@@ -28,7 +28,15 @@ export default async function HomePage() {
       orderBy: { order: "asc" },
       take: 3,
     }),
+    prisma.book.count({ where: { published: true } }),
+    prisma.course.count({ where: { published: true } }),
   ]);
+
+  const stats = [
+    { value: `${bookCount || 1}`, label: bookCount === 1 ? "Libro publicado" : "Libros publicados" },
+    { value: "10+", label: "Años escribiendo" },
+    { value: `${courseCount || 1}`, label: courseCount === 1 ? "Taller literario" : "Talleres literarios" },
+  ];
 
   return (
     <>
@@ -59,6 +67,50 @@ export default async function HomePage() {
           {featuredBooks.map((book) => (
             <BookCard key={book.id} book={book} />
           ))}
+        </div>
+      </section>
+
+      {/* Oscuro: cifras */}
+      <section className="bg-ink text-ink-foreground">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-3 sm:px-6">
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center sm:text-left">
+              <p className="font-serif text-5xl text-accent">{stat.value}</p>
+              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
+                {stat.label}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Claro: sobre mí */}
+      <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          {settings?.authorPhotoUrl ? (
+            <div className="aspect-[4/5] w-full overflow-hidden bg-surface-2">
+              <img
+                src={settings.authorPhotoUrl}
+                alt={settings.siteName}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          ) : null}
+          <div>
+            <p className="kicker text-accent-muted">Sobre la autora</p>
+            <h2 className="mt-3 font-serif text-4xl leading-tight text-foreground">
+              Palabras con <span className="italic">memoria</span> y oficio.
+            </h2>
+            <p className="mt-6 max-w-md text-muted">
+              {settings?.tagline ??
+                "Novelista y tallerista con más de una década escribiendo sobre la memoria, los vínculos familiares y los lugares que dejamos atrás."}
+            </p>
+            <div className="mt-8">
+              <LinkButton href="/sobre-mi" variant="outline">
+                Más sobre la autora
+              </LinkButton>
+            </div>
+          </div>
         </div>
       </section>
 
