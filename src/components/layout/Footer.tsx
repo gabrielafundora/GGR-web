@@ -18,7 +18,7 @@ export async function Footer() {
 
   return (
     <footer className="mt-32 bg-ink text-ink-foreground">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
         <p className="kicker text-ink-muted">Mantengámonos en contacto</p>
         <p className="mt-4 max-w-xl font-serif text-3xl leading-snug sm:text-4xl">
           Nuevos libros, artículos y talleres,{" "}
