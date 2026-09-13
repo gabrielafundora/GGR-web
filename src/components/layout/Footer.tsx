@@ -1,12 +1,19 @@
 import { prisma } from "@/lib/prisma";
 import { NAV_LINKS } from "@/components/layout/Header";
+import {
+  InstagramIcon,
+  FacebookIcon,
+  XIcon,
+  GoodreadsIcon,
+  AmazonIcon,
+} from "@/components/layout/SocialIcons";
 
 const SOCIAL_FIELDS = [
-  { key: "instagramUrl", label: "Instagram" },
-  { key: "facebookUrl", label: "Facebook" },
-  { key: "twitterUrl", label: "Twitter / X" },
-  { key: "goodreadsUrl", label: "Goodreads" },
-  { key: "amazonAuthorUrl", label: "Amazon" },
+  { key: "instagramUrl", label: "Instagram", Icon: InstagramIcon },
+  { key: "facebookUrl", label: "Facebook", Icon: FacebookIcon },
+  { key: "twitterUrl", label: "X (Twitter)", Icon: XIcon },
+  { key: "goodreadsUrl", label: "Goodreads", Icon: GoodreadsIcon },
+  { key: "amazonAuthorUrl", label: "Amazon", Icon: AmazonIcon },
 ] as const;
 
 export async function Footer() {
@@ -45,16 +52,18 @@ export async function Footer() {
           </nav>
 
           {socialLinks.length > 0 ? (
-            <div className="flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold uppercase tracking-[0.1em]">
-              {socialLinks.map((f) => (
+            <div className="flex flex-wrap items-center gap-4">
+              {socialLinks.map(({ key, label, Icon }) => (
                 <a
-                  key={f.key}
-                  href={settings![f.key]!}
+                  key={key}
+                  href={settings![key]!}
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label={label}
+                  title={label}
                   className="text-ink-muted hover:text-accent"
                 >
-                  {f.label}
+                  <Icon className="h-5 w-5" />
                 </a>
               ))}
             </div>

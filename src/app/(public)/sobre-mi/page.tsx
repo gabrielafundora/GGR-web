@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { buildMetadata } from "@/lib/metadata";
 import { MarkdownContent } from "@/components/public/MarkdownContent";
+import { LinkButton } from "@/components/ui/Button";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata("sobre-mi", {
@@ -45,6 +46,25 @@ export default async function SobreMiPage() {
           <p className="text-muted">Próximamente encontrarás aquí la biografía completa.</p>
         )}
       </div>
+
+      {settings?.contactEmail ? (
+        <div className="mt-16 max-w-3xl border-t border-border pt-16">
+          <p className="kicker text-accent-muted">Contacto</p>
+          <h2 className="mt-3 font-serif text-3xl text-foreground">Escríbeme</h2>
+          <p className="mt-4 text-muted">
+            Para consultas sobre talleres, colaboraciones o prensa, puedes escribirme
+            directamente.
+          </p>
+          <LinkButton
+            href={`mailto:${settings.contactEmail}`}
+            external
+            variant="outline"
+            className="mt-6 w-fit"
+          >
+            {settings.contactEmail}
+          </LinkButton>
+        </div>
+      ) : null}
     </div>
   );
 }

@@ -30,6 +30,7 @@
     "react-markdown": "^10.1.0",
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.1",
+    "simple-icons": "^16.31.0",
     "zod": "^4.6.4"
   },
   "devDependencies": {
