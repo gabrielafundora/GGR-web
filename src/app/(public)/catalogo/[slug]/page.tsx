@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
 import { buildEntityMetadata } from "@/lib/metadata";
 import { formatAuthorList } from "@/lib/format";
 import { LinkButton } from "@/components/ui/Button";
+import { BookCard } from "@/components/public/BookCard";
 
 async function getBook(slug: string) {
   return prisma.book.findUnique({ where: { slug } });
@@ -31,69 +33,104 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
   ]);
   if (!book || !book.published) notFound();
 
-  const authors = formatAuthorList([settings?.siteName ?? "Gabriela Guerra Rey", ...book.coautores]);
+  const authorName = settings?.siteName ?? "Gabriela Guerra Rey";
+  const authors = formatAuthorList([authorName, ...book.coautores]);
+
+  const otherBooks = await prisma.book.findMany({
+    where: { published: true, slug: { not: book.slug } },
+    orderBy: { order: "asc" },
+    take: 3,
+  });
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-16 sm:px-6">
-      <div className="grid grid-cols-1 gap-10 sm:grid-cols-[minmax(0,280px)_1fr]">
-        <div className="relative aspect-2/3 overflow-hidden bg-surface-2">
-          <img
-            src={book.coverImageUrl}
-            alt={`Portada de ${book.title}`}
-            className="h-full w-full object-cover"
-          />
-        </div>
+    <div className="pb-24">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+        <Link
+          href="/catalogo"
+          className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-muted hover:text-accent"
+        >
+          ← Volver al catálogo
+        </Link>
 
-        <div>
-          {book.genre || book.year ? (
-            <p className="kicker text-accent-muted">
-              {[book.genre, book.year].filter(Boolean).join(" · ")}
+        <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[420px_1fr] lg:gap-16">
+          <div className="relative mx-auto w-full max-w-[320px] lg:mx-0 lg:max-w-none">
+            <div className="absolute -bottom-5 -right-5 h-full w-full bg-accent/15" aria-hidden />
+            <div className="relative aspect-2/3 w-full overflow-hidden bg-surface-2">
+              <img
+                src={book.coverImageUrl}
+                alt={`Portada de ${book.title}`}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+
+          <div>
+            {book.genre || book.year ? (
+              <p className="kicker text-accent-muted">
+                {[book.genre, book.year].filter(Boolean).join(" · ")}
+              </p>
+            ) : null}
+            <h1 className="mt-3 font-serif text-5xl leading-[1.05] text-foreground sm:text-6xl">
+              {book.title}
+            </h1>
+            {book.subtitle ? (
+              <p className="mt-3 font-serif text-xl italic text-muted">{book.subtitle}</p>
+            ) : null}
+            <p className="mt-3 text-sm text-muted">{authors}</p>
+
+            <p className="mt-8 max-w-2xl whitespace-pre-line text-lg leading-relaxed text-muted">
+              {book.description}
             </p>
-          ) : null}
-          <h1 className="mt-3 font-serif text-4xl text-foreground">{book.title}</h1>
-          {book.subtitle ? (
-            <p className="mt-2 font-serif text-lg italic text-muted">{book.subtitle}</p>
-          ) : null}
-          <p className="mt-2 text-sm text-muted">{authors}</p>
 
-          <p className="mt-6 whitespace-pre-line text-base leading-relaxed text-muted">
-            {book.description}
-          </p>
+            {book.editorial || book.idioma || book.paginas || book.isbn ? (
+              <dl className="mt-10 grid max-w-2xl grid-cols-2 gap-x-6 gap-y-6 border-t border-border pt-8 sm:grid-cols-4">
+                {book.editorial ? (
+                  <div>
+                    <dt className="kicker text-foreground/50">Editorial</dt>
+                    <dd className="mt-1 text-sm text-muted">{book.editorial}</dd>
+                  </div>
+                ) : null}
+                {book.idioma ? (
+                  <div>
+                    <dt className="kicker text-foreground/50">Idioma</dt>
+                    <dd className="mt-1 text-sm text-muted">{book.idioma}</dd>
+                  </div>
+                ) : null}
+                {book.paginas ? (
+                  <div>
+                    <dt className="kicker text-foreground/50">Páginas</dt>
+                    <dd className="mt-1 text-sm text-muted">{book.paginas}</dd>
+                  </div>
+                ) : null}
+                {book.isbn ? (
+                  <div>
+                    <dt className="kicker text-foreground/50">ISBN</dt>
+                    <dd className="mt-1 text-sm text-muted">{book.isbn}</dd>
+                  </div>
+                ) : null}
+              </dl>
+            ) : null}
 
-          {book.editorial || book.idioma || book.paginas || book.isbn ? (
-            <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-border pt-6 sm:grid-cols-4">
-              {book.editorial ? (
-                <div>
-                  <dt className="kicker text-foreground/50">Editorial</dt>
-                  <dd className="mt-1 text-sm text-muted">{book.editorial}</dd>
-                </div>
-              ) : null}
-              {book.idioma ? (
-                <div>
-                  <dt className="kicker text-foreground/50">Idioma</dt>
-                  <dd className="mt-1 text-sm text-muted">{book.idioma}</dd>
-                </div>
-              ) : null}
-              {book.paginas ? (
-                <div>
-                  <dt className="kicker text-foreground/50">Páginas</dt>
-                  <dd className="mt-1 text-sm text-muted">{book.paginas}</dd>
-                </div>
-              ) : null}
-              {book.isbn ? (
-                <div>
-                  <dt className="kicker text-foreground/50">ISBN</dt>
-                  <dd className="mt-1 text-sm text-muted">{book.isbn}</dd>
-                </div>
-              ) : null}
-            </dl>
-          ) : null}
-
-          <LinkButton href={book.amazonUrl} external variant="primary" className="mt-8">
-            Ver en Amazon
-          </LinkButton>
+            <LinkButton href={book.amazonUrl} external variant="primary" className="mt-10">
+              Ver en Amazon
+            </LinkButton>
+          </div>
         </div>
       </div>
+
+      {otherBooks.length > 0 ? (
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="border-t border-border pt-16">
+            <p className="kicker text-accent-muted">Sigue explorando</p>
+            <h2 className="mt-3 font-serif text-3xl text-foreground">Más libros</h2>
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
+              {otherBooks.map((other) => (
+                <BookCard key={other.id} book={other} authorName={authorName} />
+              ))}
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
