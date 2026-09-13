@@ -17,6 +17,7 @@ export async function updateSiteSettings(
     tagline: formData.get("tagline"),
     heroHeadline: formData.get("heroHeadline"),
     heroSubtext: formData.get("heroSubtext"),
+    heroImageUrl: formData.get("heroImageUrl"),
     authorBio: formData.get("authorBio"),
     authorPhotoUrl: formData.get("authorPhotoUrl"),
     contactEmail: formData.get("contactEmail"),

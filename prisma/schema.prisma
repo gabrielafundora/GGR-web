@@ -93,6 +93,7 @@ model SiteSettings {
   tagline         String?
   heroHeadline    String?
   heroSubtext     String?
+  heroImageUrl    String?
   authorBio       String?
   authorPhotoUrl  String?
   contactEmail    String?
