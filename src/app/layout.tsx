@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Cormorant, Inter } from "next/font/google";
 
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const cormorant = Cormorant({
   variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${playfair.variable} ${inter.variable} h-full antialiased`}>
+    <html lang="es" className={`${cormorant.variable} ${inter.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col bg-background text-foreground">{children}</body>
     </html>
   );
