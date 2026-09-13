@@ -83,6 +83,14 @@ export const courseSchema = z.object({
 });
 export type CourseInput = z.infer<typeof courseSchema>;
 
+export const interestLinkSchema = z.object({
+  title: z.string().trim().min(1, "El título es obligatorio"),
+  url: urlField,
+  published: z.boolean().default(true),
+  order: z.coerce.number().int().default(0),
+});
+export type InterestLinkInput = z.infer<typeof interestLinkSchema>;
+
 export const pageMetaSchema = z.object({
   page: z.enum(["home", "catalogo", "articulos", "cursos", "sobre-mi"]),
   title: z.string().trim().min(1, "El título es obligatorio"),

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { buildMetadata } from "@/lib/metadata";
 import { MarkdownContent } from "@/components/public/MarkdownContent";
-import { LinkButton } from "@/components/ui/Button";
+import { LinkButton, ButtonArrow } from "@/components/ui/Button";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata("sobre-mi", {
@@ -13,7 +13,10 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function SobreMiPage() {
-  const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
+  const [settings, interestLinks] = await Promise.all([
+    prisma.siteSettings.findUnique({ where: { id: 1 } }),
+    prisma.interestLink.findMany({ where: { published: true }, orderBy: { order: "asc" } }),
+  ]);
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
@@ -46,6 +49,27 @@ export default async function SobreMiPage() {
           <p className="text-muted">Próximamente encontrarás aquí la biografía completa.</p>
         )}
       </div>
+
+      {interestLinks.length > 0 ? (
+        <div className="mt-16 max-w-3xl border-t border-border pt-16">
+          <p className="kicker text-accent-muted">Recursos</p>
+          <h2 className="mt-3 font-serif text-3xl text-foreground">Ligas de interés</h2>
+          <ul className="mt-6 flex flex-col gap-3">
+            {interestLinks.map((link) => (
+              <li key={link.id}>
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 text-foreground hover:text-accent"
+                >
+                  {link.title} <ButtonArrow />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       {settings?.contactEmail ? (
         <div className="mt-16 max-w-3xl border-t border-border pt-16">

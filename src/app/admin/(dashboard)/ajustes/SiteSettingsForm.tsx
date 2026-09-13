@@ -13,7 +13,7 @@ export function SiteSettingsForm({ settings }: { settings: SiteSettings | null }
   const [state, formAction, pending] = useActionState(updateSiteSettings, initialActionState);
 
   return (
-    <form action={formAction} className="flex max-w-3xl flex-col gap-8">
+    <form action={formAction} className="flex max-w-4xl flex-col gap-8">
       <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">General</h2>
         <div className="mt-6 flex flex-col gap-4">

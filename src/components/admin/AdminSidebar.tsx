@@ -7,6 +7,7 @@ const LINKS = [
   { href: "/admin/libros", label: "Libros" },
   { href: "/admin/articulos", label: "Artículos" },
   { href: "/admin/cursos", label: "Cursos y talleres" },
+  { href: "/admin/ligas-de-interes", label: "Ligas de interés" },
   { href: "/admin/metadatos", label: "Metadatos" },
   { href: "/admin/ajustes", label: "Ajustes del sitio" },
 ];

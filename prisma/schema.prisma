@@ -80,6 +80,18 @@ model Course {
   updatedAt     DateTime @updatedAt
 }
 
+/// Enlaces externos mostrados en "Ligas de interés" (página Sobre la autora),
+/// ej. título "Wikipedia" + su link a la página de Wikipedia de la autora.
+model InterestLink {
+  id        String   @id @default(cuid())
+  title     String
+  url       String
+  published Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 /// Metadatos (title/description/og:image) de las secciones principales del
 /// sitio. `page` es una de: "home" | "catalogo" | "articulos" | "cursos" | "sobre-mi".
 model PageMeta {

@@ -4,16 +4,18 @@ import { prisma } from "@/lib/prisma";
 import { Card } from "@/components/ui/Card";
 
 export default async function AdminHomePage() {
-  const [books, articles, courses] = await Promise.all([
+  const [books, articles, courses, interestLinks] = await Promise.all([
     prisma.book.count(),
     prisma.article.count(),
     prisma.course.count(),
+    prisma.interestLink.count(),
   ]);
 
   const cards = [
     { label: "Libros", count: books, href: "/admin/libros" },
     { label: "Artículos", count: articles, href: "/admin/articulos" },
     { label: "Cursos y talleres", count: courses, href: "/admin/cursos" },
+    { label: "Ligas de interés", count: interestLinks, href: "/admin/ligas-de-interes" },
   ];
 
   return (
@@ -21,7 +23,7 @@ export default async function AdminHomePage() {
       <h1 className="font-serif text-3xl text-foreground">Panel de administrador</h1>
       <p className="mt-2 text-muted">Gestiona el contenido del sitio de Gabriela Guerra Rey.</p>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {cards.map((c) => (
           <Link key={c.href} href={c.href}>
             <Card className="p-6 hover:border-accent">
