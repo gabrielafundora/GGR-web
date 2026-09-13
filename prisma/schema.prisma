@@ -47,7 +47,6 @@ model Book {
   excerptMd       String?
   metaTitle       String?
   metaDescription String?
-  metaImageUrl    String?
   published       Boolean  @default(true)
   order           Int      @default(0)
   createdAt       DateTime @default(now())
@@ -63,7 +62,6 @@ model Article {
   coverImageUrl   String?
   metaTitle       String?
   metaDescription String?
-  metaImageUrl    String?
   published       Boolean   @default(true)
   publishedAt     DateTime?
   createdAt       DateTime  @default(now())

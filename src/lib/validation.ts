@@ -48,7 +48,6 @@ export const bookSchema = z.object({
   // arma el title/description/og:image a partir de los campos de arriba.
   metaTitle: z.string().trim().optional().transform((v) => v || undefined),
   metaDescription: z.string().trim().optional().transform((v) => v || undefined),
-  metaImageUrl: optionalUrlField,
   published: z.boolean().default(true),
   order: z.coerce.number().int().default(0),
 });
@@ -62,7 +61,6 @@ export const articleSchema = z.object({
   coverImageUrl: optionalUrlField,
   metaTitle: z.string().trim().optional().transform((v) => v || undefined),
   metaDescription: z.string().trim().optional().transform((v) => v || undefined),
-  metaImageUrl: optionalUrlField,
   published: z.boolean().default(true),
   publishedAt: z.string().trim().optional().transform((v) => v || undefined),
 });

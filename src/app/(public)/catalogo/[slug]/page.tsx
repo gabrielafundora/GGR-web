@@ -21,7 +21,6 @@ export async function generateMetadata({
   return buildEntityMetadata({
     title: book.metaTitle ?? book.title,
     description: book.metaDescription ?? book.description,
-    imageUrl: book.metaImageUrl ?? undefined,
   });
 }
 

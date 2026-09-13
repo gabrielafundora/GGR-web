@@ -27,7 +27,6 @@ function parseBookForm(formData: FormData) {
     coautores: formData.get("coautores"),
     metaTitle: formData.get("metaTitle"),
     metaDescription: formData.get("metaDescription"),
-    metaImageUrl: formData.get("metaImageUrl"),
     published: formData.get("published") === "on",
     order: formData.get("order") || 0,
   });

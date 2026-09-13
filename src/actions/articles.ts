@@ -18,7 +18,6 @@ function parseArticleForm(formData: FormData) {
     coverImageUrl: formData.get("coverImageUrl"),
     metaTitle: formData.get("metaTitle"),
     metaDescription: formData.get("metaDescription"),
-    metaImageUrl: formData.get("metaImageUrl"),
     published: formData.get("published") === "on",
     publishedAt: formData.get("publishedAt"),
   });

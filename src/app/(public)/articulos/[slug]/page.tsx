@@ -20,7 +20,6 @@ export async function generateMetadata({
   return buildEntityMetadata({
     title: article.metaTitle ?? article.title,
     description: article.metaDescription ?? article.excerpt,
-    imageUrl: article.metaImageUrl ?? undefined,
   });
 }
 
