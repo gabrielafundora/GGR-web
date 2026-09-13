@@ -41,9 +41,13 @@ cosas en local sin afectar el contenido real del sitio.
    cp .env.example .env
    ```
 
-   - `DATABASE_URL`: pega la cadena de conexión de la rama **development**
-     de Neon (consíguela en [console.neon.tech](https://console.neon.tech) →
-     proyecto `ggr-web` → rama `development` → "Connect").
+   - `DATABASE_URL`: pega la cadena de conexión **pooled** (host con
+     `-pooler`) de la rama **development** de Neon (consíguela en
+     [console.neon.tech](https://console.neon.tech) → proyecto `ggr-web` →
+     rama `development` → "Connect").
+   - `DIRECT_URL`: la misma conexión pero sin `-pooler` en el host (activa
+     el toggle "Connection pooling" a *off* en el mismo diálogo de
+     "Connect" para copiarla). Solo la usan las migraciones de Prisma.
    - `AUTH_SECRET`: genera uno con `openssl rand -base64 32`.
 
 3. El esquema ya está aplicado en Neon, así que solo falta generar el
@@ -139,8 +143,11 @@ claro y sigues pudiendo usar el campo de URL mientras tanto.
 
 2. Configura las variables de entorno del proyecto en Vercel (Production y
    Preview):
-   - `DATABASE_URL`: la cadena de conexión de la rama **production** de
-     Neon.
+   - `DATABASE_URL`: la cadena de conexión **pooled** (host con `-pooler`)
+     de la rama **production** de Neon.
+   - `DIRECT_URL`: la misma conexión sin `-pooler` en el host. La necesita
+     `prisma migrate deploy` (que corre en cada build) — el pooler de Neon
+     no soporta los advisory locks que usan las migraciones.
    - `AUTH_SECRET`: un valor generado con `openssl rand -base64 32`,
      distinto al de desarrollo.
    - `NEXT_PUBLIC_SITE_URL`: la URL pública del sitio (ej.
