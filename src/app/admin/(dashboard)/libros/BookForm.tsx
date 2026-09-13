@@ -58,7 +58,6 @@ export function BookForm({
       <div className="grid grid-cols-2 gap-4">
         <Input label="Orden" name="order" type="number" defaultValue={book?.order ?? 0} />
         <div className="flex flex-col justify-end gap-2 pb-2">
-          <Checkbox label="Destacado" name="featured" defaultChecked={book?.featured ?? false} />
           <Checkbox label="Publicado" name="published" defaultChecked={book?.published ?? true} />
         </div>
       </div>

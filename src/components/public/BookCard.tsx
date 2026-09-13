@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { Book } from "@prisma/client";
 
-import { Badge } from "@/components/ui/Card";
 import { LinkButton } from "@/components/ui/Button";
 
 export function BookCard({ book }: { book: Book }) {
@@ -19,7 +18,6 @@ export function BookCard({ book }: { book: Book }) {
           className="h-full w-full object-cover"
           loading="lazy"
         />
-        {book.featured ? <Badge className="absolute left-3 top-3">Destacado</Badge> : null}
       </Link>
 
       <div className="flex flex-1 flex-col gap-3 pt-4">

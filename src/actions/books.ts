@@ -19,7 +19,6 @@ function parseBookForm(formData: FormData) {
     amazonUrl: formData.get("amazonUrl"),
     year: formData.get("year") || undefined,
     genre: formData.get("genre"),
-    featured: formData.get("featured") === "on",
     published: formData.get("published") === "on",
     order: formData.get("order") || 0,
   });

@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function CatalogoPage() {
   const books = await prisma.book.findMany({
     where: { published: true },
-    orderBy: [{ featured: "desc" }, { order: "asc" }],
+    orderBy: { order: "asc" },
   });
 
   return (
