@@ -52,8 +52,8 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
           ← Volver al catálogo
         </Link>
 
-        <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[420px_1fr] lg:gap-16">
-          <div className="relative mx-auto w-full max-w-[320px] lg:mx-0 lg:max-w-none">
+        <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[340px_1fr] lg:gap-16">
+          <div className="relative mx-auto w-full max-w-[280px] lg:mx-0 lg:max-w-none">
             <div className="absolute -bottom-5 -right-5 h-full w-full bg-accent/15" aria-hidden />
             <div className="relative aspect-2/3 w-full overflow-hidden bg-surface-2 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)]">
               <img
@@ -78,7 +78,7 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
             ) : null}
             <p className="mt-3 text-sm text-muted">{authors}</p>
 
-            <p className="mt-8 max-w-2xl whitespace-pre-line text-base leading-relaxed text-muted">
+            <p className="mt-8 max-w-2xl whitespace-pre-line text-sm leading-relaxed text-muted">
               {book.description}
             </p>
 
