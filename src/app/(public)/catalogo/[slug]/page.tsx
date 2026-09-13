@@ -95,10 +95,6 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
                 ) : null}
               </dl>
             ) : null}
-
-            <LinkButton href={book.amazonUrl} external variant="primary" className="mt-8 w-full">
-              Ver en Amazon
-            </LinkButton>
           </div>
 
           <div>
@@ -118,6 +114,10 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
             <p className="mt-8 whitespace-pre-line text-sm leading-relaxed text-muted">
               {book.description}
             </p>
+
+            <LinkButton href={book.amazonUrl} external variant="primary" className="mt-8">
+              Ver en Amazon
+            </LinkButton>
           </div>
         </div>
       </div>
