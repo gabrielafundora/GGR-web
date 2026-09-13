@@ -18,7 +18,7 @@ export function BookCard({ book, authorName }: { book: Book; authorName: string 
         <img
           src={book.coverImageUrl}
           alt={`Portada de ${book.title}`}
-          className="h-full w-full object-cover grayscale transition-[filter] duration-500 hover:grayscale-0"
+          className="h-full w-full object-cover"
           loading="lazy"
         />
       </Link>
