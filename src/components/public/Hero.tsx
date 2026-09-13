@@ -41,7 +41,7 @@ export function Hero({
           <p className="mt-7 max-w-md text-base leading-relaxed text-ink-muted">{description}</p>
         ) : null}
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-          <LinkButton href="/catalogo" variant="primary">
+          <LinkButton href="/catalogo" variant="primaryInverse">
             Ver catálogo
           </LinkButton>
           <LinkButton href="/sobre-mi" variant="linkInverse">

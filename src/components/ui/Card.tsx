@@ -23,7 +23,7 @@ export function Badge({ children, className }: { children: ReactNode; className?
   return (
     <span
       className={clsx(
-        "inline-flex items-center bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-ink",
+        "inline-flex items-center bg-ink px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-ink-foreground",
         className
       )}
     >
