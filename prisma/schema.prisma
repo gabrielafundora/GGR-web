@@ -3,10 +3,17 @@
 // Postgres (Neon) tanto en desarrollo como en producción — DATABASE_URL
 // apunta a una rama de Neon distinta en cada entorno (ver .env.example y
 // README.md, sección "Base de datos"), pero el esquema es el mismo.
+//
+// `directUrl` (conexión sin el pooler de Neon, sin "-pooler" en el host)
+// es necesaria solo para `prisma migrate deploy/dev`: los bloqueos de
+// sesión (advisory locks) que usan las migraciones no funcionan a través
+// del pooler en modo transacción. El cliente de Prisma en runtime sigue
+// usando `url` (pooled) para las queries normales de la app.
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
