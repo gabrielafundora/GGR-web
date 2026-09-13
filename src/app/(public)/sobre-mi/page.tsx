@@ -15,27 +15,35 @@ export default async function SobreMiPage() {
   const settings = await prisma.siteSettings.findUnique({ where: { id: 1 } });
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
-      <div className="flex flex-col items-center gap-8 text-center sm:flex-row sm:items-start sm:text-left">
+    <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,320px)_1fr]">
         {settings?.authorPhotoUrl ? (
-          <img
-            src={settings.authorPhotoUrl}
-            alt={settings.siteName}
-            className="h-40 w-40 shrink-0 rounded-full border border-border object-cover"
-          />
+          <div className="aspect-[4/5] w-full overflow-hidden bg-surface-2">
+            <img
+              src={settings.authorPhotoUrl}
+              alt={settings.siteName}
+              className="h-full w-full object-cover"
+            />
+          </div>
         ) : null}
-        <div>
-          <h1 className="font-serif text-4xl text-foreground">Sobre la autora</h1>
-          {settings?.tagline ? <p className="mt-2 text-lg text-accent">{settings.tagline}</p> : null}
-        </div>
-      </div>
 
-      <div className="mt-12">
-        {settings?.authorBio ? (
-          <MarkdownContent content={settings.authorBio} />
-        ) : (
-          <p className="text-muted">Próximamente encontrarás aquí la biografía completa.</p>
-        )}
+        <div>
+          <header className="max-w-2xl border-b border-border pb-8">
+            <p className="kicker text-accent-muted">Sobre la autora</p>
+            <h1 className="mt-3 font-serif text-5xl text-foreground">{settings?.siteName ?? "Gabriela Guerra Rey"}</h1>
+            {settings?.tagline ? (
+              <p className="mt-4 font-serif text-lg italic text-muted">{settings.tagline}</p>
+            ) : null}
+          </header>
+
+          <div className="mt-10">
+            {settings?.authorBio ? (
+              <MarkdownContent content={settings.authorBio} />
+            ) : (
+              <p className="text-muted">Próximamente encontrarás aquí la biografía completa.</p>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

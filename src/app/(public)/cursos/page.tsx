@@ -19,8 +19,9 @@ export default async function CursosPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <header className="mb-12 max-w-2xl">
-        <h1 className="font-serif text-4xl text-foreground">Cursos y talleres</h1>
+      <header className="mb-12 max-w-2xl border-b border-border pb-8">
+        <p className="kicker text-accent-muted">Talleres literarios</p>
+        <h1 className="mt-3 font-serif text-5xl text-foreground">Cursos y talleres</h1>
         <p className="mt-4 text-muted">
           Estos son los talleres y cursos que imparto. Aquí encontrarás una descripción de cada
           uno; para inscribirte o conocer fechas y cupo, sigue el enlace de &ldquo;Más
