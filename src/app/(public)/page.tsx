@@ -41,6 +41,7 @@ export default async function HomePage() {
         imageUrl={settings?.heroImageUrl ?? settings?.authorPhotoUrl}
       />
 
+      {/* Claro */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
           <div>
@@ -61,36 +62,40 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Oscuro */}
       {latestArticles.length > 0 ? (
-        <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-border pb-6">
-            <div>
-              <p className="kicker text-accent-muted">El blog</p>
-              <h2 className="mt-3 font-serif text-4xl text-foreground">Últimos artículos</h2>
+        <section className="bg-ink text-ink-foreground">
+          <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
+            <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-white/10 pb-6">
+              <div>
+                <p className="kicker text-accent">El blog</p>
+                <h2 className="mt-3 font-serif text-4xl">Últimos artículos</h2>
+              </div>
+              <Link
+                href="/articulos"
+                className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] hover:text-accent"
+              >
+                Ver todos <ButtonArrow />
+              </Link>
             </div>
-            <Link
-              href="/articulos"
-              className="group inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-foreground hover:text-accent"
-            >
-              Ver todos <ButtonArrow />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {latestArticles.map((article) => (
-              <ArticleCard key={article.id} article={article} />
-            ))}
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {latestArticles.map((article) => (
+                <ArticleCard key={article.id} article={article} />
+              ))}
+            </div>
           </div>
         </section>
       ) : null}
 
+      {/* Claro */}
       <section className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-        <div className="grid grid-cols-1 items-center gap-10 bg-ink px-8 py-16 text-ink-foreground sm:px-16 lg:grid-cols-[1fr_auto]">
+        <div className="grid grid-cols-1 items-center gap-10 border border-border bg-surface-2 px-8 py-16 sm:px-16 lg:grid-cols-[1fr_auto]">
           <div>
-            <p className="kicker text-ink-muted">Talleres literarios</p>
-            <h2 className="mt-3 max-w-md font-serif text-3xl leading-tight sm:text-4xl">
+            <p className="kicker text-accent-muted">Talleres literarios</p>
+            <h2 className="mt-3 max-w-md font-serif text-3xl leading-tight text-foreground sm:text-4xl">
               Escribe con <span className="italic">acompañamiento</span> y estructura.
             </h2>
-            <p className="mt-4 max-w-md text-ink-muted">
+            <p className="mt-4 max-w-md text-muted">
               Conoce los talleres que imparto para quienes quieren empezar o profundizar en su
               escritura.
             </p>

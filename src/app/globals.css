@@ -4,8 +4,9 @@
 /*
  * Paleta editorial: fondo crema cálido, tinta casi negra, acento #FF785A
  * usado con moderación (líneas, etiquetas, botones) en vez de bloques
- * grandes. `ink` es el tono para las secciones oscuras que alternan con
- * el crema (contraste tipo revista), independiente del acento.
+ * grandes. `ink` es un gris oscuro cálido (no negro puro) para las
+ * secciones que alternan con el crema (contraste tipo revista, ver
+ * ritmo claro/oscuro en Home), independiente del acento.
  */
 @theme inline {
   --color-background: #f7f2ea;
@@ -17,9 +18,10 @@
   --color-accent: #ff785a;
   --color-accent-hover: #ff9478;
   --color-accent-muted: #e85f42;
-  --color-ink: #17140f;
+  --color-ink: #2b2822;
+  --color-ink-2: #363228;
   --color-ink-foreground: #f7f2ea;
-  --color-ink-muted: #a89e8d;
+  --color-ink-muted: #b3a996;
 
   --font-serif: var(--font-heading), Georgia, serif;
   --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
