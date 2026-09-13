@@ -39,7 +39,7 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
   const otherBooks = await prisma.book.findMany({
     where: { published: true, slug: { not: book.slug } },
     orderBy: { order: "asc" },
-    take: 3,
+    take: 4,
   });
 
   return (
@@ -134,7 +134,7 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
           <div className="border-t border-border pt-16">
             <p className="kicker text-accent-muted">Sigue explorando</p>
             <h2 className="mt-3 font-serif text-3xl text-foreground">Más libros</h2>
-            <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
+            <div className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {otherBooks.map((other) => (
                 <BookCard key={other.id} book={other} authorName={authorName} />
               ))}
