@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1200" viewBox="0 0 800 1200">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#121212"/>
+      <stop offset="100%" stop-color="#0b0b0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1200" fill="url(#g)"/>
+  <rect x="0" y="0" width="800" height="10" fill="#FF785A"/>
+  <circle cx="680" cy="216" r="96" fill="#FF785A" opacity="0.15"/>
+  <circle cx="96" cy="1020" r="144" fill="#FF785A" opacity="0.10"/>
+  <text x="50%" y="46%" fill="#f5f5f5" font-family="Georgia, 'Times New Roman', serif" font-size="48" text-anchor="middle" dominant-baseline="middle">La Casa de</text>
+  <text x="50%" y="58%" fill="#a3a3a3" font-family="Arial, sans-serif" font-size="26" text-anchor="middle" dominant-baseline="middle">los Ecos</text>
+</svg>

@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Paleta del sitio: fondos oscuros, blancos/grises para texto, acento
+ * #FF785A. Diseño oscuro único (sin modo claro) — se define directamente
+ * en :root, sin depender de prefers-color-scheme.
+ */
+@theme inline {
+  --color-background: #0b0b0b;
+  --color-surface: #121212;
+  --color-surface-2: #1a1a1a;
+  --color-foreground: #f5f5f5;
+  --color-muted: #a3a3a3;
+  --color-border: #2a2a2a;
+  --color-accent: #ff785a;
+  --color-accent-hover: #ff9478;
+  --color-accent-muted: #e85f42;
+
+  --font-serif: var(--font-heading), Georgia, serif;
+  --font-sans: var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #0b0b0b;
+}
+
+.prose-invert :is(h1, h2, h3, h4) {
+  font-family: var(--font-serif);
+}

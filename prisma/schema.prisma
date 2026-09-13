@@ -1,0 +1,103 @@
+// Prisma schema — Sitio web de Gabriela Guerra Rey
+//
+// Desarrollo/verificación: SQLite (100% offline, ver DATABASE_URL en .env).
+// Producción: cambiar `provider` a "postgresql" y DATABASE_URL a una base
+// Postgres real (Neon/Supabase/Vercel Postgres). Ver README.md sección
+// "Deploy a producción" para los pasos exactos de migración.
+//
+// Los tipos usados aquí (String, Int, Boolean, DateTime, cuid, now,
+// @updatedAt) son compatibles 1:1 entre SQLite y Postgres a propósito,
+// para que cambiar de motor no requiera tocar el esquema.
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Book {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String
+  subtitle      String?
+  description   String
+  coverImageUrl String
+  amazonUrl     String
+  year          Int?
+  genre         String?
+  featured      Boolean  @default(false)
+  published     Boolean  @default(true)
+  order         Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Article {
+  id            String    @id @default(cuid())
+  slug          String    @unique
+  title         String
+  excerpt       String
+  contentMd     String
+  coverImageUrl String?
+  published     Boolean   @default(true)
+  publishedAt   DateTime?
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Course {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  description String
+  imageUrl    String?
+  externalUrl String
+  modality    String?
+  featured    Boolean  @default(false)
+  published   Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+/// Metadatos (title/description/og:image) de las secciones principales del
+/// sitio. `page` es una de: "home" | "catalogo" | "articulos" | "cursos" | "sobre-mi".
+model PageMeta {
+  id          String   @id @default(cuid())
+  page        String   @unique
+  title       String
+  description String
+  ogImageUrl  String?
+  updatedAt   DateTime @updatedAt
+}
+
+/// Fila única (id fijo = 1) con la configuración general del sitio.
+model SiteSettings {
+  id              Int      @id @default(1)
+  siteName        String
+  tagline         String?
+  heroHeadline    String?
+  heroSubtext     String?
+  authorBio       String?
+  authorPhotoUrl  String?
+  contactEmail    String?
+  instagramUrl    String?
+  facebookUrl     String?
+  twitterUrl      String?
+  goodreadsUrl    String?
+  amazonAuthorUrl String?
+  updatedAt       DateTime @updatedAt
+}
