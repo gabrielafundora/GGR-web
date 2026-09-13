@@ -2,8 +2,11 @@ import Link from "next/link";
 import type { Book } from "@prisma/client";
 
 import { LinkButton } from "@/components/ui/Button";
+import { formatAuthorList } from "@/lib/format";
 
-export function BookCard({ book }: { book: Book }) {
+export function BookCard({ book, authorName }: { book: Book; authorName: string }) {
+  const authors = formatAuthorList([authorName, ...book.coautores]);
+
   return (
     <div className="flex flex-col">
       <Link
@@ -30,9 +33,7 @@ export function BookCard({ book }: { book: Book }) {
           {book.subtitle ? (
             <p className="mt-1 font-serif text-sm italic text-muted">{book.subtitle}</p>
           ) : null}
-          {book.coautores.length > 0 ? (
-            <p className="mt-1 text-xs text-muted">Con {book.coautores.join(", ")}</p>
-          ) : null}
+          <p className="mt-1 text-xs text-muted">{authors}</p>
         </div>
 
         <LinkButton href={book.amazonUrl} external variant="primary" className="mt-auto w-full">
