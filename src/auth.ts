@@ -13,25 +13,25 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Credentials({
       name: "Credenciales",
       credentials: {
-        email: { label: "Correo", type: "email" },
+        username: { label: "Usuario", type: "text" },
         password: { label: "Contraseña", type: "password" },
       },
       async authorize(credentials) {
-        const email = credentials?.email;
+        const username = credentials?.username;
         const password = credentials?.password;
-        if (typeof email !== "string" || typeof password !== "string") {
+        if (typeof username !== "string" || typeof password !== "string") {
           return null;
         }
 
         const admin = await prisma.adminUser.findUnique({
-          where: { email: email.toLowerCase().trim() },
+          where: { username: username.trim() },
         });
         if (!admin) return null;
 
         const valid = await bcrypt.compare(password, admin.passwordHash);
         if (!valid) return null;
 
-        return { id: admin.id, email: admin.email, name: admin.name ?? admin.email };
+        return { id: admin.id, name: admin.name ?? admin.username };
       },
     }),
   ],

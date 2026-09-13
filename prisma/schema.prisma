@@ -22,7 +22,7 @@ generator client {
 
 model AdminUser {
   id           String   @id @default(cuid())
-  email        String   @unique
+  username     String   @unique
   passwordHash String
   name         String?
   createdAt    DateTime @default(now())

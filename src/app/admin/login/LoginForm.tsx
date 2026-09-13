@@ -12,7 +12,7 @@ export function LoginForm() {
 
   return (
     <form action={formAction} className="mt-6 flex flex-col gap-4">
-      <Input label="Correo" name="email" type="email" autoComplete="username" required />
+      <Input label="Usuario" name="username" type="text" autoComplete="username" required />
       <Input label="Contraseña" name="password" type="password" autoComplete="current-password" required />
       {state.error ? <p className="text-sm text-accent">{state.error}</p> : null}
       <Button type="submit" disabled={pending} className="mt-2 w-full">

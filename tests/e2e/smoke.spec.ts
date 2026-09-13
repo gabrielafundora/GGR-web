@@ -2,8 +2,8 @@ import { test, expect } from "@playwright/test";
 
 // Antes de correr esto, siembra un admin de prueba con credenciales fijas
 // (ver README.md, sección "Verificación / tests end-to-end"):
-//   SEED_ADMIN_EMAIL="e2e-admin@example.com" SEED_ADMIN_PASSWORD="TestAdmin123!" npx tsx prisma/seed.ts
-const ADMIN_EMAIL = process.env.E2E_ADMIN_EMAIL ?? "e2e-admin@example.com";
+//   SEED_ADMIN_USERNAME="e2e-admin" SEED_ADMIN_PASSWORD="TestAdmin123!" npx tsx prisma/seed.ts
+const ADMIN_USERNAME = process.env.E2E_ADMIN_USERNAME ?? "e2e-admin";
 const ADMIN_PASSWORD = process.env.E2E_ADMIN_PASSWORD ?? "TestAdmin123!";
 
 test.describe("Páginas públicas", () => {
@@ -62,15 +62,15 @@ test.describe("Admin", () => {
 
   test("login con credenciales inválidas muestra error", async ({ page }) => {
     await page.goto("/admin/login");
-    await page.getByLabel("Correo").fill(ADMIN_EMAIL);
+    await page.getByLabel("Usuario").fill(ADMIN_USERNAME);
     await page.getByLabel("Contraseña").fill("clave-incorrecta");
     await page.getByRole("button", { name: "Ingresar" }).click();
-    await expect(page.getByText("Correo o contraseña incorrectos.")).toBeVisible();
+    await expect(page.getByText("Usuario o contraseña incorrectos.")).toBeVisible();
   });
 
   test("login válido entra al panel", async ({ page }) => {
     await page.goto("/admin/login");
-    await page.getByLabel("Correo").fill(ADMIN_EMAIL);
+    await page.getByLabel("Usuario").fill(ADMIN_USERNAME);
     await page.getByLabel("Contraseña").fill(ADMIN_PASSWORD);
     await page.getByRole("button", { name: "Ingresar" }).click();
     await expect(page).toHaveURL(/\/admin$/);
@@ -79,7 +79,7 @@ test.describe("Admin", () => {
 
   test("CRUD completo de un libro", async ({ page }) => {
     await page.goto("/admin/login");
-    await page.getByLabel("Correo").fill(ADMIN_EMAIL);
+    await page.getByLabel("Usuario").fill(ADMIN_USERNAME);
     await page.getByLabel("Contraseña").fill(ADMIN_PASSWORD);
     await page.getByRole("button", { name: "Ingresar" }).click();
     await expect(page).toHaveURL(/\/admin$/);
@@ -119,7 +119,7 @@ test.describe("Admin", () => {
 
   test("editar metadatos de Inicio actualiza el <title> público", async ({ page }) => {
     await page.goto("/admin/login");
-    await page.getByLabel("Correo").fill(ADMIN_EMAIL);
+    await page.getByLabel("Usuario").fill(ADMIN_USERNAME);
     await page.getByLabel("Contraseña").fill(ADMIN_PASSWORD);
     await page.getByRole("button", { name: "Ingresar" }).click();
     await expect(page).toHaveURL(/\/admin$/);

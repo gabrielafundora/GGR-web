@@ -67,7 +67,7 @@ cosas en local sin afectar el contenido real del sitio.
    npm run db:seed
    ```
 
-   Imprime en la consola un correo/contraseña de administrador de
+   Imprime en la consola un usuario/contraseña de administrador de
    desarrollo — anótalos para entrar a `/admin`. Ya existe además un
    usuario admin creado directamente en Neon para pruebas rápidas (pide las
    credenciales si las perdiste).
@@ -171,7 +171,7 @@ directa a Postgres, que algunos entornos restringidos —como sandboxes de
 CI— bloquean):
 
 ```bash
-DATABASE_URL="<url-de-la-rama-production-de-neon>" npm run admin:set-password -- tu-correo@dominio.com "nueva-contraseña"
+DATABASE_URL="<url-de-la-rama-production-de-neon>" npm run admin:set-password -- tuUsuario "nueva-contraseña"
 ```
 
 ## Verificación / tests end-to-end

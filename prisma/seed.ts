@@ -5,12 +5,12 @@ import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
-const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL ?? "admin@gabrielaguerrarey.com";
+const ADMIN_USERNAME = process.env.SEED_ADMIN_USERNAME ?? "admin";
 
 async function seedAdmin() {
-  const existing = await prisma.adminUser.findUnique({ where: { email: ADMIN_EMAIL } });
+  const existing = await prisma.adminUser.findUnique({ where: { username: ADMIN_USERNAME } });
   if (existing) {
-    console.log(`\n[seed] AdminUser ya existe (${ADMIN_EMAIL}); no se generó una nueva contraseña.`);
+    console.log(`\n[seed] AdminUser ya existe (${ADMIN_USERNAME}); no se generó una nueva contraseña.`);
     return;
   }
 
@@ -18,12 +18,12 @@ async function seedAdmin() {
   const passwordHash = await bcrypt.hash(password, 12);
 
   await prisma.adminUser.create({
-    data: { email: ADMIN_EMAIL, passwordHash, name: "Gabriela Guerra Rey" },
+    data: { username: ADMIN_USERNAME, passwordHash, name: "Gabriela Guerra Rey" },
   });
 
   console.log("\n=========================================================");
   console.log(" Credenciales de administrador (SOLO DESARROLLO)");
-  console.log(` Correo:      ${ADMIN_EMAIL}`);
+  console.log(` Usuario:     ${ADMIN_USERNAME}`);
   console.log(` Contraseña:  ${password}`);
   console.log(" Cámbialas antes de ir a producción (ver README.md).");
   console.log("=========================================================\n");
