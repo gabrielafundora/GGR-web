@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [settings, featuredBooks, latestArticles, bookCount, courseCount] = await Promise.all([
+  const [settings, featuredBooks, latestArticles] = await Promise.all([
     prisma.siteSettings.findUnique({ where: { id: 1 } }),
     prisma.book.findMany({
       where: { published: true },
@@ -28,15 +28,7 @@ export default async function HomePage() {
       orderBy: { order: "asc" },
       take: 3,
     }),
-    prisma.book.count({ where: { published: true } }),
-    prisma.course.count({ where: { published: true } }),
   ]);
-
-  const stats = [
-    { value: `${bookCount || 1}`, label: bookCount === 1 ? "Libro publicado" : "Libros publicados" },
-    { value: "10+", label: "Años escribiendo" },
-    { value: `${courseCount || 1}`, label: courseCount === 1 ? "Taller literario" : "Talleres literarios" },
-  ];
 
   return (
     <>
@@ -89,20 +81,6 @@ export default async function HomePage() {
               Ver cursos y talleres
             </LinkButton>
           </div>
-        </div>
-      </section>
-
-      {/* Oscuro: cifras */}
-      <section className="bg-ink text-ink-foreground">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-16 sm:grid-cols-3 sm:px-6">
-          {stats.map((stat) => (
-            <div key={stat.label} className="text-center sm:text-left">
-              <p className="font-serif text-5xl text-accent">{stat.value}</p>
-              <p className="mt-2 text-xs font-semibold uppercase tracking-[0.14em] text-ink-muted">
-                {stat.label}
-              </p>
-            </div>
-          ))}
         </div>
       </section>
 
