@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { buildMetadata } from "@/lib/metadata";
 import { CourseCard } from "@/components/public/CourseCard";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildCourseJsonLd } from "@/lib/jsonld";
+import { getSiteUrl } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata("cursos", {
@@ -16,9 +19,13 @@ export default async function CursosPage() {
     where: { published: true },
     orderBy: { order: "asc" },
   });
+  const siteUrl = getSiteUrl();
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      {courses.map((course) => (
+        <JsonLd key={course.id} data={buildCourseJsonLd(course, siteUrl)} />
+      ))}
       <header className="mb-12 max-w-2xl border-b border-border pb-8">
         <p className="kicker text-accent-muted">Talleres literarios</p>
         <h1 className="mt-3 font-serif text-5xl text-foreground">Cursos y talleres</h1>

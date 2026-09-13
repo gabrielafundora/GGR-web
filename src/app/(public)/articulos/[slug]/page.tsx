@@ -6,6 +6,9 @@ import { es } from "date-fns/locale";
 import { prisma } from "@/lib/prisma";
 import { buildEntityMetadata } from "@/lib/metadata";
 import { MarkdownContent } from "@/components/public/MarkdownContent";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildArticleJsonLd } from "@/lib/jsonld";
+import { getSiteUrl } from "@/lib/site";
 
 async function getArticle(slug: string) {
   return prisma.article.findUnique({ where: { slug } });
@@ -32,6 +35,7 @@ export default async function ArticleDetailPage({ params }: PageProps<"/articulo
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+      <JsonLd data={buildArticleJsonLd(article, getSiteUrl())} />
       <header className="mb-10 border-b border-border pb-8">
         <p className="kicker text-accent-muted">
           {format(date, "d 'de' MMMM, yyyy", { locale: es })}

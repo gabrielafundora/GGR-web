@@ -7,6 +7,9 @@ import { buildEntityMetadata } from "@/lib/metadata";
 import { formatAuthorList } from "@/lib/format";
 import { LinkButton } from "@/components/ui/Button";
 import { BookCard } from "@/components/public/BookCard";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildBookJsonLd } from "@/lib/jsonld";
+import { getSiteUrl } from "@/lib/site";
 
 async function getBook(slug: string) {
   return prisma.book.findUnique({ where: { slug } });
@@ -43,6 +46,7 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
 
   return (
     <div className="pb-24">
+      <JsonLd data={buildBookJsonLd(book, getSiteUrl())} />
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
         <Link
           href="/catalogo"

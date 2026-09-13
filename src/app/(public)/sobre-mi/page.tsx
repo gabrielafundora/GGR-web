@@ -4,6 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { buildMetadata } from "@/lib/metadata";
 import { MarkdownContent } from "@/components/public/MarkdownContent";
 import { LinkButton, ButtonArrow } from "@/components/ui/Button";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { buildPersonJsonLd } from "@/lib/jsonld";
+import { getSiteUrl } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata("sobre-mi", {
@@ -20,6 +23,7 @@ export default async function SobreMiPage() {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
+      <JsonLd data={buildPersonJsonLd(settings, interestLinks, getSiteUrl())} />
       <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,320px)_1fr]">
         {settings?.authorPhotoUrl ? (
           <div className="aspect-[4/5] w-full overflow-hidden bg-surface-2">
