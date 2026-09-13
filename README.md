@@ -104,15 +104,33 @@ Desde `/admin` (una vez con sesión iniciada) Gabriela puede:
 ### Imágenes
 
 Cada campo de imagen (portada de libro, foto de autora, etc.) admite dos
-modos:
+modos, funcionando igual en desarrollo y en producción:
 
-- **URL de imagen** (recomendado): pega el link de una imagen ya alojada en
-  cualquier servicio. Funciona igual en desarrollo y en producción.
-- **Subir archivo**: solo para desarrollo local — guarda el archivo en
-  `public/uploads/`. **No funciona en hosting serverless (ej. Vercel)**,
-  cuyo filesystem no persiste. Para producción, sube la imagen a un servicio
-  externo (o integra Vercel Blob/Cloudinary más adelante) y usa el campo de
-  URL.
+- **Subir imagen** (recomendado): sube el archivo directo desde el admin
+  (máx. 5MB, JPG/PNG/WEBP/GIF). Se guarda en un bucket de **Neon Object
+  Storage** (S3-compatible, público de solo lectura) y queda con una URL
+  pública permanente.
+- **URL**: pega el link de una imagen ya alojada en cualquier otro
+  servicio.
+
+Esto requiere las variables `AWS_ENDPOINT_URL_S3`, `AWS_REGION`,
+`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY` y `NEON_STORAGE_BUCKET` (ver
+`.env.example`). Se generan así:
+
+1. En [console.neon.tech](https://console.neon.tech), crea (o usa) un
+   proyecto en una región con Object Storage habilitado (por ahora: AWS
+   Ohio `aws-us-east-2` o Frankfurt `aws-eu-central-1` — no todas las
+   regiones lo soportan aún).
+2. En ese proyecto → tu rama → pestaña **Object storage** → crea un bucket
+   con acceso `public_read`.
+3. En **Credentials** (barra lateral de la rama) → **Create credential**,
+   marca los scopes `storage:read` y `storage:write`, y copia los valores
+   (`AWS_ENDPOINT_URL_S3`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`,
+   `AWS_REGION`) — solo se muestran una vez.
+4. `NEON_STORAGE_BUCKET` es el nombre del bucket que creaste (paso 2).
+
+Si estas variables faltan, el botón de "Subir imagen" muestra un error
+claro y sigues pudiendo usar el campo de URL mientras tanto.
 
 ## Deploy a producción (Vercel)
 
@@ -127,6 +145,9 @@ modos:
      distinto al de desarrollo.
    - `NEXT_PUBLIC_SITE_URL`: la URL pública del sitio (ej.
      `https://gabrielaguerrarey.com` o el dominio que te asigne Vercel).
+   - `AWS_ENDPOINT_URL_S3`, `AWS_REGION`, `AWS_ACCESS_KEY_ID`,
+     `AWS_SECRET_ACCESS_KEY`, `NEON_STORAGE_BUCKET`: para que "Subir
+     imagen" funcione en el admin — ver sección "Imágenes" arriba.
 
 3. Haz deploy. El script `build` corre `prisma migrate deploy` antes de
    `next build`, así que cualquier migración pendiente se aplica sola en

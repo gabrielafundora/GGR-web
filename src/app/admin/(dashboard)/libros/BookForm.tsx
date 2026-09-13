@@ -41,7 +41,7 @@ export function BookForm({
         name="coverImageUrl"
         defaultValue={book?.coverImageUrl}
         required
-        hint="URL de la imagen o súbela en desarrollo local."
+        hint="Sube un archivo (máx. 5MB) o pega la URL de una imagen."
       />
       <Input
         label="Link a Amazon"
