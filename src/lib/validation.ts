@@ -26,6 +26,10 @@ export const bookSchema = z.object({
   amazonUrl: urlField,
   year: z.coerce.number().int().optional().nullable(),
   genre: z.string().trim().optional().transform((v) => v || undefined),
+  editorial: z.string().trim().optional().transform((v) => v || undefined),
+  idioma: z.string().trim().optional().transform((v) => v || undefined),
+  paginas: z.coerce.number().int().optional().nullable(),
+  isbn: z.string().trim().optional().transform((v) => v || undefined),
   published: z.boolean().default(true),
   order: z.coerce.number().int().default(0),
 });
