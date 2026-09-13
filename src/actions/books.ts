@@ -19,6 +19,10 @@ function parseBookForm(formData: FormData) {
     amazonUrl: formData.get("amazonUrl"),
     year: formData.get("year") || undefined,
     genre: formData.get("genre"),
+    editorial: formData.get("editorial"),
+    idioma: formData.get("idioma"),
+    paginas: formData.get("paginas") || undefined,
+    isbn: formData.get("isbn"),
     published: formData.get("published") === "on",
     order: formData.get("order") || 0,
   });

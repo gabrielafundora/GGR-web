@@ -39,6 +39,10 @@ model Book {
   amazonUrl     String
   year          Int?
   genre         String?
+  editorial     String?
+  idioma        String?
+  paginas       Int?
+  isbn          String?
   published     Boolean  @default(true)
   order         Int      @default(0)
   createdAt     DateTime @default(now())

@@ -39,16 +39,48 @@ export default async function BookDetailPage({ params }: PageProps<"/catalogo/[s
         </div>
 
         <div>
-          {book.genre ? <p className="kicker text-accent-muted">{book.genre}</p> : null}
+          {book.genre || book.year ? (
+            <p className="kicker text-accent-muted">
+              {[book.genre, book.year].filter(Boolean).join(" · ")}
+            </p>
+          ) : null}
           <h1 className="mt-3 font-serif text-4xl text-foreground">{book.title}</h1>
           {book.subtitle ? (
             <p className="mt-2 font-serif text-lg italic text-muted">{book.subtitle}</p>
           ) : null}
-          {book.year ? <p className="mt-2 text-sm text-muted">{book.year}</p> : null}
 
           <p className="mt-6 whitespace-pre-line text-base leading-relaxed text-muted">
             {book.description}
           </p>
+
+          {book.editorial || book.idioma || book.paginas || book.isbn ? (
+            <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-t border-border pt-6 sm:grid-cols-4">
+              {book.editorial ? (
+                <div>
+                  <dt className="kicker text-foreground/50">Editorial</dt>
+                  <dd className="mt-1 text-sm text-muted">{book.editorial}</dd>
+                </div>
+              ) : null}
+              {book.idioma ? (
+                <div>
+                  <dt className="kicker text-foreground/50">Idioma</dt>
+                  <dd className="mt-1 text-sm text-muted">{book.idioma}</dd>
+                </div>
+              ) : null}
+              {book.paginas ? (
+                <div>
+                  <dt className="kicker text-foreground/50">Páginas</dt>
+                  <dd className="mt-1 text-sm text-muted">{book.paginas}</dd>
+                </div>
+              ) : null}
+              {book.isbn ? (
+                <div>
+                  <dt className="kicker text-foreground/50">ISBN</dt>
+                  <dd className="mt-1 text-sm text-muted">{book.isbn}</dd>
+                </div>
+              ) : null}
+            </dl>
+          ) : null}
 
           <LinkButton href={book.amazonUrl} external variant="primary" className="mt-8">
             Ver en Amazon

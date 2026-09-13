@@ -56,6 +56,19 @@ export function BookForm({
         <Input label="Género (opcional)" name="genre" defaultValue={book?.genre ?? ""} />
       </div>
       <div className="grid grid-cols-2 gap-4">
+        <Input label="Editorial (opcional)" name="editorial" defaultValue={book?.editorial ?? ""} />
+        <Input label="Idioma (opcional)" name="idioma" defaultValue={book?.idioma ?? ""} placeholder="Español" />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
+        <Input
+          label="Número de páginas (opcional)"
+          name="paginas"
+          type="number"
+          defaultValue={book?.paginas ?? ""}
+        />
+        <Input label="ISBN (opcional)" name="isbn" defaultValue={book?.isbn ?? ""} />
+      </div>
+      <div className="grid grid-cols-2 gap-4">
         <Input label="Orden" name="order" type="number" defaultValue={book?.order ?? 0} />
         <div className="flex flex-col justify-end gap-2 pb-2">
           <Checkbox label="Publicado" name="published" defaultChecked={book?.published ?? true} />
