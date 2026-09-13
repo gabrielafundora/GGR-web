@@ -39,7 +39,7 @@ export default async function SobreMiPage() {
               <p className="mt-4 font-serif text-lg italic text-muted">{settings.tagline}</p>
             ) : null}
             {settings?.authorQuote ? (
-              <p className="mt-6 max-w-md font-serif text-2xl italic leading-snug text-foreground">
+              <p className="mt-6 max-w-md font-serif text-lg leading-snug text-foreground">
                 &ldquo;{settings.authorQuote}&rdquo;
               </p>
             ) : null}
