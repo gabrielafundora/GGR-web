@@ -44,6 +44,7 @@ model Book {
   paginas       Int?
   isbn          String?
   coautores     String[] @default([])
+  excerptMd     String?
   published     Boolean  @default(true)
   order         Int      @default(0)
   createdAt     DateTime @default(now())

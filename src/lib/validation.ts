@@ -30,6 +30,8 @@ export const bookSchema = z.object({
   idioma: z.string().trim().optional().transform((v) => v || undefined),
   paginas: z.coerce.number().int().optional().nullable(),
   isbn: z.string().trim().optional().transform((v) => v || undefined),
+  // Fragmento gratis (markdown): opcional, solo algunos libros lo tienen.
+  excerptMd: z.string().trim().optional().transform((v) => v || undefined),
   // Coautores: además de Gabriela, algunos libros tienen otros autores.
   // El formulario manda un texto con nombres separados por coma.
   coautores: z
