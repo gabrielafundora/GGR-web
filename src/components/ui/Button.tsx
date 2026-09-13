@@ -4,19 +4,20 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 type Variant = "primary" | "primaryInverse" | "outline" | "link" | "outlineInverse" | "linkInverse";
 
-// Botones en blanco/negro/gris — el acento (#FF785A) se reserva para
-// texto (kickers, subtítulos, algunos hovers), no para rellenos de botón.
+// Botones en blanco/negro/gris en reposo — el acento (#FF785A) entra al
+// hacer hover, como toque de color, además de en texto (kickers,
+// subtítulos, subrayados).
 const variantClasses: Record<Variant, string> = {
-  primary: "bg-foreground text-background hover:bg-foreground/85 px-6 py-3",
+  primary: "bg-foreground text-background hover:bg-accent hover:text-ink px-6 py-3",
   outline:
-    "border border-foreground text-foreground px-6 py-3 hover:bg-foreground hover:text-background",
+    "border border-foreground text-foreground px-6 py-3 hover:border-accent hover:bg-accent hover:text-ink",
   link: "text-foreground underline decoration-accent decoration-2 underline-offset-4 hover:text-accent px-0 py-0",
   // Mismos "primary"/"outline"/"link" pero para usar sobre fondos oscuros
   // (hero con imagen, secciones "ink"): tono claro en vez del oscuro por
   // defecto.
-  primaryInverse: "bg-ink-foreground text-ink hover:bg-ink-foreground/85 px-6 py-3",
+  primaryInverse: "bg-ink-foreground text-ink hover:bg-accent px-6 py-3",
   outlineInverse:
-    "border border-ink-foreground text-ink-foreground px-6 py-3 hover:bg-ink-foreground hover:text-ink",
+    "border border-ink-foreground text-ink-foreground px-6 py-3 hover:border-accent hover:bg-accent hover:text-ink",
   linkInverse:
     "text-ink-foreground underline decoration-accent decoration-2 underline-offset-4 hover:text-accent px-0 py-0",
 };
