@@ -1,5 +1,6 @@
 import { clsx } from "clsx";
 import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
 import remarkGfm from "remark-gfm";
 
 export function MarkdownContent({
@@ -17,7 +18,7 @@ export function MarkdownContent({
         className
       )}
     >
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+      <ReactMarkdown remarkPlugins={[remarkGfm, remarkBreaks]}>{content}</ReactMarkdown>
     </div>
   );
 }
