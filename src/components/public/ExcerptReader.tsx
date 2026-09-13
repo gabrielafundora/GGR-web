@@ -17,7 +17,7 @@ export function ExcerptReader({ content }: { content: string }) {
   return (
     <div>
       <div className={expanded ? undefined : "relative max-h-[26rem] overflow-hidden"}>
-        <MarkdownContent content={content} />
+        <MarkdownContent content={content} className="prose-sm" />
         {!expanded ? (
           <div
             aria-hidden
