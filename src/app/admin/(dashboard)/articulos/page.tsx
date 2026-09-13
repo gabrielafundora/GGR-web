@@ -28,6 +28,7 @@ export default async function AdminArticlesPage() {
               <th className="px-4 py-3 font-medium">Título</th>
               <th className="px-4 py-3 font-medium">Fecha</th>
               <th className="px-4 py-3 font-medium">Estado</th>
+              <th className="px-4 py-3 font-medium">SEO</th>
               <th className="px-4 py-3 font-medium">Acciones</th>
             </tr>
           </thead>
@@ -39,6 +40,13 @@ export default async function AdminArticlesPage() {
                   {format(article.publishedAt ?? article.createdAt, "d MMM yyyy", { locale: es })}
                 </td>
                 <td className="px-4 py-3 text-muted">{article.published ? "Publicado" : "Borrador"}</td>
+                <td className="px-4 py-3">
+                  {article.metaTitle && article.metaDescription ? (
+                    <span className="text-foreground">Completo</span>
+                  ) : (
+                    <span className="text-muted">Incompleto</span>
+                  )}
+                </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-4">
                     <Link
@@ -54,7 +62,7 @@ export default async function AdminArticlesPage() {
             ))}
             {articles.length === 0 ? (
               <tr>
-                <td colSpan={4} className="px-4 py-6 text-center text-muted">
+                <td colSpan={5} className="px-4 py-6 text-center text-muted">
                   Aún no hay artículos. Crea el primero.
                 </td>
               </tr>

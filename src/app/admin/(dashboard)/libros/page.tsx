@@ -24,6 +24,7 @@ export default async function AdminBooksPage() {
               <th className="px-4 py-3 font-medium">Título</th>
               <th className="px-4 py-3 font-medium">Slug</th>
               <th className="px-4 py-3 font-medium">Estado</th>
+              <th className="px-4 py-3 font-medium">SEO</th>
               <th className="px-4 py-3 font-medium">Acciones</th>
             </tr>
           </thead>
@@ -33,6 +34,13 @@ export default async function AdminBooksPage() {
                 <td className="px-4 py-3 text-foreground">{book.title}</td>
                 <td className="px-4 py-3 text-muted">{book.slug}</td>
                 <td className="px-4 py-3 text-muted">{book.published ? "Publicado" : "Borrador"}</td>
+                <td className="px-4 py-3">
+                  {book.metaTitle && book.metaDescription ? (
+                    <span className="text-foreground">Completo</span>
+                  ) : (
+                    <span className="text-muted">Incompleto</span>
+                  )}
+                </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-4">
                     <Link href={`/admin/libros/${book.id}/editar`} className="text-accent hover:text-accent-hover">
@@ -45,7 +53,7 @@ export default async function AdminBooksPage() {
             ))}
             {books.length === 0 ? (
               <tr>
-                <td colSpan={4} className="px-4 py-6 text-center text-muted">
+                <td colSpan={5} className="px-4 py-6 text-center text-muted">
                   Aún no hay libros. Crea el primero.
                 </td>
               </tr>
