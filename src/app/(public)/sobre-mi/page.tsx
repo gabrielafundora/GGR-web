@@ -40,7 +40,7 @@ export default async function SobreMiPage() {
 
       <div className="mt-16 max-w-3xl">
         {settings?.authorBio ? (
-          <MarkdownContent content={settings.authorBio} className="prose-lg" />
+          <MarkdownContent content={settings.authorBio} className="prose-sm" />
         ) : (
           <p className="text-muted">Próximamente encontrarás aquí la biografía completa.</p>
         )}

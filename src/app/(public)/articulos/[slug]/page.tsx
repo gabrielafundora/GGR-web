@@ -47,7 +47,7 @@ export default async function ArticleDetailPage({ params }: PageProps<"/articulo
         </div>
       ) : null}
 
-      <MarkdownContent content={article.contentMd} />
+      <MarkdownContent content={article.contentMd} className="prose-sm" />
     </article>
   );
 }
