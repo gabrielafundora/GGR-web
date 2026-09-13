@@ -9,9 +9,23 @@ cada sección sin tocar código.
 
 - **Next.js 16** (App Router) + React 19 + TypeScript
 - **Tailwind CSS v4**
-- **Prisma** (SQLite en desarrollo, Postgres en producción)
+- **Prisma** + **Postgres (Neon)** — misma base de datos en desarrollo y
+  producción, usando ramas (branches) distintas de Neon para cada entorno
 - **Auth.js (next-auth v5)** — login de administrador con usuario/contraseña
 - **react-markdown** — para el contenido de los artículos y la biografía
+
+## Base de datos
+
+El proyecto usa **Neon** (Postgres serverless). El proyecto de Neon
+`ggr-web` tiene dos ramas:
+
+- **development** — para tu máquina local.
+- **production** (rama por defecto del proyecto) — la que usa el sitio
+  desplegado en Vercel.
+
+Ambas comparten el mismo esquema (`prisma/schema.prisma` y
+`prisma/migrations/`), pero sus datos son independientes: puedes probar
+cosas en local sin afectar el contenido real del sitio.
 
 ## Setup local
 
@@ -27,22 +41,34 @@ cada sección sin tocar código.
    cp .env.example .env
    ```
 
-   Genera un `AUTH_SECRET` propio con `openssl rand -base64 32` y pégalo en `.env`.
-   `DATABASE_URL` ya viene configurado para usar SQLite localmente — no necesitas
-   ninguna base de datos externa para desarrollar.
+   - `DATABASE_URL`: pega la cadena de conexión de la rama **development**
+     de Neon (consíguela en [console.neon.tech](https://console.neon.tech) →
+     proyecto `ggr-web` → rama `development` → "Connect").
+   - `AUTH_SECRET`: genera uno con `openssl rand -base64 32`.
 
-3. Crea la base de datos local y siembra contenido de ejemplo:
+3. El esquema ya está aplicado en Neon, así que solo falta generar el
+   cliente de Prisma:
 
    ```bash
-   npm run db:migrate
+   npx prisma generate
    ```
 
-   Este comando corre las migraciones y automáticamente el seed
-   (`prisma/seed.ts`). **Al final imprime en la consola un correo y
-   contraseña de administrador de desarrollo** — anótalos, los necesitarás
-   para entrar a `/admin`.
+   Si en el futuro cambias `prisma/schema.prisma`, corre
+   `npm run db:migrate` para crear y aplicar una nueva migración contra tu
+   rama de desarrollo.
 
-4. Levanta el servidor:
+4. (Opcional) Siembra contenido de ejemplo en tu rama de desarrollo:
+
+   ```bash
+   npm run db:seed
+   ```
+
+   Imprime en la consola un correo/contraseña de administrador de
+   desarrollo — anótalos para entrar a `/admin`. Ya existe además un
+   usuario admin creado directamente en Neon para pruebas rápidas (pide las
+   credenciales si las perdiste).
+
+5. Levanta el servidor:
 
    ```bash
    npm run dev
@@ -88,61 +114,42 @@ modos:
   externo (o integra Vercel Blob/Cloudinary más adelante) y usa el campo de
   URL.
 
-## Deploy a producción (Vercel + Postgres)
+## Deploy a producción (Vercel)
 
-El proyecto usa SQLite solo para desarrollo local — **no persiste** en el
-filesystem efímero de Vercel. Antes del primer deploy real:
+1. En Vercel, importa este repositorio (**Root Directory** debe ser la raíz
+   del repo, donde está `package.json`).
 
-1. Crea una base Postgres gratuita en [Neon](https://neon.tech) o
-   [Supabase](https://supabase.com) (o usa Vercel Postgres) y copia su
-   `DATABASE_URL`.
+2. Configura las variables de entorno del proyecto en Vercel (Production y
+   Preview):
+   - `DATABASE_URL`: la cadena de conexión de la rama **production** de
+     Neon.
+   - `AUTH_SECRET`: un valor generado con `openssl rand -base64 32`,
+     distinto al de desarrollo.
+   - `NEXT_PUBLIC_SITE_URL`: la URL pública del sitio (ej.
+     `https://gabrielaguerrarey.com` o el dominio que te asigne Vercel).
 
-2. En `prisma/schema.prisma`, cambia:
+3. Haz deploy. El script `build` corre `prisma migrate deploy` antes de
+   `next build`, así que cualquier migración pendiente se aplica sola en
+   cada deploy — no hace falta tocar la base de datos a mano.
 
-   ```diff
-   datasource db {
-   - provider = "sqlite"
-   + provider = "postgresql"
-     url      = env("DATABASE_URL")
-   }
-   ```
+Ya existe un usuario administrador creado directamente en la rama de
+producción de Neon; pide las credenciales si no las tienes. Puedes rotarlas
+cuando quieras (ver abajo).
 
-3. Borra las migraciones generadas contra SQLite y crea una migración
-   inicial fresca ya apuntando a Postgres (las migraciones de SQLite no son
-   válidas en Postgres):
+### Rotar la contraseña de administrador
 
-   ```bash
-   rm -rf prisma/migrations
-   DATABASE_URL="tu-url-de-postgres" npx prisma migrate dev --name init
-   ```
-
-4. En Vercel, configura las variables de entorno (Production y Preview):
-   - `DATABASE_URL`: la URL de tu base Postgres.
-   - `AUTH_SECRET`: genera una nueva con `openssl rand -base64 32` (no
-     reutilices la de desarrollo).
-
-5. Crea tu usuario administrador real contra esa base:
-
-   ```bash
-   DATABASE_URL="tu-url-de-postgres" npm run admin:set-password -- tu-correo@dominio.com "una-contraseña-segura"
-   ```
-
-6. Haz deploy normalmente (conectando el repo en Vercel). El `postinstall`
-   corre `prisma generate` automáticamente.
-
-### Rotar la contraseña de administrador más adelante
-
-En cualquier momento, corre localmente (con `DATABASE_URL` apuntando a
-producción):
+Desde una máquina con acceso normal a internet (Neon requiere una conexión
+directa a Postgres, que algunos entornos restringidos —como sandboxes de
+CI— bloquean):
 
 ```bash
-DATABASE_URL="tu-url-de-postgres" npm run admin:set-password -- tu-correo@dominio.com "nueva-contraseña"
+DATABASE_URL="<url-de-la-rama-production-de-neon>" npm run admin:set-password -- tu-correo@dominio.com "nueva-contraseña"
 ```
 
 ## Verificación / tests end-to-end
 
-Con el servidor de desarrollo corriendo (`npm run dev`) y la base local ya
-sembrada:
+Con el servidor de desarrollo corriendo (`npm run dev`) contra tu rama de
+desarrollo ya sembrada:
 
 ```bash
 npx playwright install chromium   # solo la primera vez

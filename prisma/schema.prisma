@@ -1,16 +1,11 @@
 // Prisma schema — Sitio web de Gabriela Guerra Rey
 //
-// Desarrollo/verificación: SQLite (100% offline, ver DATABASE_URL en .env).
-// Producción: cambiar `provider` a "postgresql" y DATABASE_URL a una base
-// Postgres real (Neon/Supabase/Vercel Postgres). Ver README.md sección
-// "Deploy a producción" para los pasos exactos de migración.
-//
-// Los tipos usados aquí (String, Int, Boolean, DateTime, cuid, now,
-// @updatedAt) son compatibles 1:1 entre SQLite y Postgres a propósito,
-// para que cambiar de motor no requiera tocar el esquema.
+// Postgres (Neon) tanto en desarrollo como en producción — DATABASE_URL
+// apunta a una rama de Neon distinta en cada entorno (ver .env.example y
+// README.md, sección "Base de datos"), pero el esquema es el mismo.
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
