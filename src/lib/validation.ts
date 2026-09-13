@@ -70,6 +70,7 @@ export const siteSettingsSchema = z.object({
   tagline: z.string().trim().optional().transform((v) => v || undefined),
   heroHeadline: z.string().trim().optional().transform((v) => v || undefined),
   heroSubtext: z.string().trim().optional().transform((v) => v || undefined),
+  heroImageUrl: optionalUrlField,
   authorBio: z.string().trim().optional().transform((v) => v || undefined),
   authorPhotoUrl: optionalUrlField,
   contactEmail: z

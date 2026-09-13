@@ -38,6 +38,7 @@ export default async function HomePage() {
           settings?.heroSubtext ??
           "Novelista y tallerista. Descubre mis libros, artículos sobre el oficio de escribir y los talleres literarios que imparto."
         }
+        imageUrl={settings?.heroImageUrl}
       />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">

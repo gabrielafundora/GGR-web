@@ -25,6 +25,12 @@ export function SiteSettingsForm({ settings }: { settings: SiteSettings | null }
         <h2 className="font-serif text-xl text-foreground">Portada (Inicio)</h2>
         <Input label="Titular del hero" name="heroHeadline" defaultValue={settings?.heroHeadline ?? ""} />
         <Textarea label="Subtexto del hero" name="heroSubtext" defaultValue={settings?.heroSubtext ?? ""} />
+        <ImageField
+          label="Imagen de fondo del hero (opcional)"
+          name="heroImageUrl"
+          defaultValue={settings?.heroImageUrl}
+          hint="Se muestra detrás del titular en la portada de Inicio, con una capa oscura encima para que el texto se lea bien."
+        />
       </section>
 
       <section className="flex flex-col gap-4">
