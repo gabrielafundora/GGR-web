@@ -17,7 +17,7 @@ export function CourseCard({ course }: { course: Course }) {
           <h3 className="font-serif text-2xl text-foreground">{course.title}</h3>
           {course.featured ? <Badge>Destacado</Badge> : null}
           {course.modality ? (
-            <span className="rounded-full border border-border px-3 py-1 text-xs uppercase tracking-wider text-muted">
+            <span className="border border-border px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-muted">
               {course.modality}
             </span>
           ) : null}

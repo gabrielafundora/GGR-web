@@ -19,8 +19,9 @@ export default async function CatalogoPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-      <header className="mb-12 max-w-2xl">
-        <h1 className="font-serif text-4xl text-foreground">Catálogo</h1>
+      <header className="mb-12 max-w-2xl border-b border-border pb-8">
+        <p className="kicker text-accent-muted">Obra publicada</p>
+        <h1 className="mt-3 font-serif text-5xl text-foreground">Catálogo</h1>
         <p className="mt-4 text-muted">
           Cada libro tiene su propia página en Amazon: ahí puedes comprarlo en el formato que
           prefieras (impreso, digital o audiolibro, según disponibilidad).
