@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { NAV_LINKS } from "@/components/layout/Header";
+import { LinkButton } from "@/components/ui/Button";
 import {
   InstagramIcon,
   FacebookIcon,
@@ -31,6 +32,17 @@ export async function Footer() {
           Nuevos libros, artículos y talleres,{" "}
           <span className="italic">directo cuando salgan.</span>
         </p>
+
+        {settings?.contactEmail ? (
+          <LinkButton
+            href={`mailto:${settings.contactEmail}`}
+            external
+            variant="outlineInverse"
+            className="mt-8 w-fit"
+          >
+            Escríbeme
+          </LinkButton>
+        ) : null}
 
         <div className="mt-12 flex flex-col gap-8 border-t border-white/10 pt-8 sm:flex-row sm:items-end sm:justify-between">
           <div className="flex items-center gap-2.5">

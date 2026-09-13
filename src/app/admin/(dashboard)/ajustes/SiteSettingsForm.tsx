@@ -14,53 +14,61 @@ export function SiteSettingsForm({ settings }: { settings: SiteSettings | null }
 
   return (
     <form action={formAction} className="flex max-w-2xl flex-col gap-8">
-      <section className="flex flex-col gap-4">
-        <h2 className="font-serif text-xl text-foreground">General</h2>
-        <Input label="Nombre del sitio" name="siteName" defaultValue={settings?.siteName ?? "Gabriela Guerra Rey"} required />
-        <Input label="Tagline (opcional)" name="tagline" defaultValue={settings?.tagline ?? ""} />
-        <Input label="Correo de contacto (opcional)" name="contactEmail" type="email" defaultValue={settings?.contactEmail ?? ""} />
+      <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">General</h2>
+        <div className="mt-6 flex flex-col gap-4">
+          <Input label="Nombre del sitio" name="siteName" defaultValue={settings?.siteName ?? "Gabriela Guerra Rey"} required />
+          <Input label="Tagline (opcional)" name="tagline" defaultValue={settings?.tagline ?? ""} />
+          <Input label="Correo de contacto (opcional)" name="contactEmail" type="email" defaultValue={settings?.contactEmail ?? ""} />
+        </div>
       </section>
 
-      <section className="flex flex-col gap-4">
-        <h2 className="font-serif text-xl text-foreground">Portada (Inicio)</h2>
-        <Input
-          label="Etiqueta sobre el nombre"
-          name="heroHeadline"
-          defaultValue={settings?.heroHeadline ?? ""}
-          hint='Ej. "Novelista y tallerista". El nombre del sitio (arriba) se muestra en grande debajo de esta etiqueta.'
-        />
-        <Textarea
-          label="Descripción breve del hero"
-          name="heroSubtext"
-          defaultValue={settings?.heroSubtext ?? ""}
-          hint="Uno o dos renglones debajo del nombre."
-        />
-        <ImageField
-          label="Imagen de fondo del hero (opcional)"
-          name="heroImageUrl"
-          defaultValue={settings?.heroImageUrl}
-          hint="Se muestra detrás del nombre en la portada de Inicio, sin ninguna capa encima — elige una foto donde el texto blanco se siga leyendo bien."
-        />
+      <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">Portada (Inicio)</h2>
+        <div className="mt-6 flex flex-col gap-4">
+          <Input
+            label="Etiqueta sobre el nombre"
+            name="heroHeadline"
+            defaultValue={settings?.heroHeadline ?? ""}
+            hint='Ej. "Novelista y tallerista". El nombre del sitio (arriba) se muestra en grande debajo de esta etiqueta.'
+          />
+          <Textarea
+            label="Descripción breve del hero"
+            name="heroSubtext"
+            defaultValue={settings?.heroSubtext ?? ""}
+            hint="Uno o dos renglones debajo del nombre."
+          />
+          <ImageField
+            label="Imagen de fondo del hero (opcional)"
+            name="heroImageUrl"
+            defaultValue={settings?.heroImageUrl}
+            hint="Se muestra detrás del nombre en la portada de Inicio, sin ninguna capa encima — elige una foto donde el texto blanco se siga leyendo bien."
+          />
+        </div>
       </section>
 
-      <section className="flex flex-col gap-4">
-        <h2 className="font-serif text-xl text-foreground">Sobre la autora</h2>
-        <ImageField label="Foto de la autora" name="authorPhotoUrl" defaultValue={settings?.authorPhotoUrl} />
-        <Textarea
-          label="Biografía (markdown)"
-          name="authorBio"
-          defaultValue={settings?.authorBio ?? ""}
-          className="min-h-48"
-        />
+      <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">Sobre la autora</h2>
+        <div className="mt-6 flex flex-col gap-4">
+          <ImageField label="Foto de la autora" name="authorPhotoUrl" defaultValue={settings?.authorPhotoUrl} />
+          <Textarea
+            label="Biografía (markdown)"
+            name="authorBio"
+            defaultValue={settings?.authorBio ?? ""}
+            className="min-h-48"
+          />
+        </div>
       </section>
 
-      <section className="flex flex-col gap-4">
-        <h2 className="font-serif text-xl text-foreground">Redes sociales (opcional)</h2>
-        <Input label="Instagram" name="instagramUrl" defaultValue={settings?.instagramUrl ?? ""} />
-        <Input label="Facebook" name="facebookUrl" defaultValue={settings?.facebookUrl ?? ""} />
-        <Input label="Twitter / X" name="twitterUrl" defaultValue={settings?.twitterUrl ?? ""} />
-        <Input label="Goodreads" name="goodreadsUrl" defaultValue={settings?.goodreadsUrl ?? ""} />
-        <Input label="Página de autora en Amazon" name="amazonAuthorUrl" defaultValue={settings?.amazonAuthorUrl ?? ""} />
+      <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
+        <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">Redes sociales (opcional)</h2>
+        <div className="mt-6 flex flex-col gap-4">
+          <Input label="Instagram" name="instagramUrl" defaultValue={settings?.instagramUrl ?? ""} />
+          <Input label="Facebook" name="facebookUrl" defaultValue={settings?.facebookUrl ?? ""} />
+          <Input label="Twitter / X" name="twitterUrl" defaultValue={settings?.twitterUrl ?? ""} />
+          <Input label="Goodreads" name="goodreadsUrl" defaultValue={settings?.goodreadsUrl ?? ""} />
+          <Input label="Página de autora en Amazon" name="amazonAuthorUrl" defaultValue={settings?.amazonAuthorUrl ?? ""} />
+        </div>
       </section>
 
       {state.error ? <p className="text-sm text-accent">{state.error}</p> : null}
