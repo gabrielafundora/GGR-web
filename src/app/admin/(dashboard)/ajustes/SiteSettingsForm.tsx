@@ -13,13 +13,12 @@ export function SiteSettingsForm({ settings }: { settings: SiteSettings | null }
   const [state, formAction, pending] = useActionState(updateSiteSettings, initialActionState);
 
   return (
-    <form action={formAction} className="flex max-w-2xl flex-col gap-8">
+    <form action={formAction} className="flex max-w-3xl flex-col gap-8">
       <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">General</h2>
         <div className="mt-6 flex flex-col gap-4">
           <Input label="Nombre del sitio" name="siteName" defaultValue={settings?.siteName ?? "Gabriela Guerra Rey"} required />
           <Input label="Tagline (opcional)" name="tagline" defaultValue={settings?.tagline ?? ""} />
-          <Input label="Correo de contacto (opcional)" name="contactEmail" type="email" defaultValue={settings?.contactEmail ?? ""} />
         </div>
       </section>
 
@@ -63,9 +62,18 @@ export function SiteSettingsForm({ settings }: { settings: SiteSettings | null }
       <section className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
         <h2 className="border-b border-border pb-4 font-serif text-xl text-foreground">Redes sociales (opcional)</h2>
         <div className="mt-6 flex flex-col gap-4">
+          <Input
+            label="Correo de contacto"
+            name="contactEmail"
+            type="email"
+            defaultValue={settings?.contactEmail ?? ""}
+            hint="Se muestra como botón de contacto y como ícono de correo junto a las redes sociales."
+          />
           <Input label="Instagram" name="instagramUrl" defaultValue={settings?.instagramUrl ?? ""} />
           <Input label="Facebook" name="facebookUrl" defaultValue={settings?.facebookUrl ?? ""} />
           <Input label="Twitter / X" name="twitterUrl" defaultValue={settings?.twitterUrl ?? ""} />
+          <Input label="LinkedIn" name="linkedinUrl" defaultValue={settings?.linkedinUrl ?? ""} />
+          <Input label="YouTube" name="youtubeUrl" defaultValue={settings?.youtubeUrl ?? ""} />
           <Input label="Goodreads" name="goodreadsUrl" defaultValue={settings?.goodreadsUrl ?? ""} />
           <Input label="Página de autora en Amazon" name="amazonAuthorUrl" defaultValue={settings?.amazonAuthorUrl ?? ""} />
         </div>

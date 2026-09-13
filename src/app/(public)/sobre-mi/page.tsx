@@ -57,7 +57,6 @@ export default async function SobreMiPage() {
           </p>
           <LinkButton
             href={`mailto:${settings.contactEmail}`}
-            external
             variant="outline"
             className="mt-6 w-fit"
           >

@@ -105,6 +105,8 @@ model SiteSettings {
   instagramUrl    String?
   facebookUrl     String?
   twitterUrl      String?
+  linkedinUrl     String?
+  youtubeUrl      String?
   goodreadsUrl    String?
   amazonAuthorUrl String?
   updatedAt       DateTime @updatedAt

@@ -24,6 +24,8 @@ export async function updateSiteSettings(
     instagramUrl: formData.get("instagramUrl"),
     facebookUrl: formData.get("facebookUrl"),
     twitterUrl: formData.get("twitterUrl"),
+    linkedinUrl: formData.get("linkedinUrl"),
+    youtubeUrl: formData.get("youtubeUrl"),
     goodreadsUrl: formData.get("goodreadsUrl"),
     amazonAuthorUrl: formData.get("amazonAuthorUrl"),
   });

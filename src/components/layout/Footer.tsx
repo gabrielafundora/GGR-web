@@ -5,14 +5,19 @@ import {
   InstagramIcon,
   FacebookIcon,
   XIcon,
+  LinkedInIcon,
+  YoutubeIcon,
   GoodreadsIcon,
   AmazonIcon,
+  MailIcon,
 } from "@/components/layout/SocialIcons";
 
 const SOCIAL_FIELDS = [
   { key: "instagramUrl", label: "Instagram", Icon: InstagramIcon },
   { key: "facebookUrl", label: "Facebook", Icon: FacebookIcon },
   { key: "twitterUrl", label: "X (Twitter)", Icon: XIcon },
+  { key: "linkedinUrl", label: "LinkedIn", Icon: LinkedInIcon },
+  { key: "youtubeUrl", label: "YouTube", Icon: YoutubeIcon },
   { key: "goodreadsUrl", label: "Goodreads", Icon: GoodreadsIcon },
   { key: "amazonAuthorUrl", label: "Amazon", Icon: AmazonIcon },
 ] as const;
@@ -36,7 +41,6 @@ export async function Footer() {
         {settings?.contactEmail ? (
           <LinkButton
             href={`mailto:${settings.contactEmail}`}
-            external
             variant="outlineInverse"
             className="mt-8 w-fit"
           >
@@ -63,7 +67,7 @@ export async function Footer() {
             ))}
           </nav>
 
-          {socialLinks.length > 0 ? (
+          {socialLinks.length > 0 || settings?.contactEmail ? (
             <div className="flex flex-wrap items-center gap-4">
               {socialLinks.map(({ key, label, Icon }) => (
                 <a
@@ -78,6 +82,16 @@ export async function Footer() {
                   <Icon className="h-5 w-5" />
                 </a>
               ))}
+              {settings?.contactEmail ? (
+                <a
+                  href={`mailto:${settings.contactEmail}`}
+                  aria-label="Correo"
+                  title="Correo"
+                  className="text-ink-muted hover:text-accent"
+                >
+                  <MailIcon className="h-5 w-5" />
+                </a>
+              ) : null}
             </div>
           ) : null}
         </div>

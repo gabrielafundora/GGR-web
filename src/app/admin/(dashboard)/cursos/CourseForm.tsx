@@ -20,7 +20,7 @@ export function CourseForm({
   const [state, formAction, pending] = useActionState(action, initialActionState);
 
   return (
-    <form action={formAction} className="flex max-w-2xl flex-col gap-5">
+    <form action={formAction} className="flex max-w-3xl flex-col gap-5">
       <Input
         label="Slug (identificador interno)"
         name="slug"

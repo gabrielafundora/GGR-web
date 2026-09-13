@@ -110,6 +110,8 @@ export const siteSettingsSchema = z.object({
   instagramUrl: optionalUrlField,
   facebookUrl: optionalUrlField,
   twitterUrl: optionalUrlField,
+  linkedinUrl: optionalUrlField,
+  youtubeUrl: optionalUrlField,
   goodreadsUrl: optionalUrlField,
   amazonAuthorUrl: optionalUrlField,
 });

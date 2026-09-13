@@ -27,7 +27,7 @@ export function ArticleForm({
   const [preview, setPreview] = useState(false);
 
   return (
-    <form action={formAction} className="flex max-w-2xl flex-col gap-5">
+    <form action={formAction} className="flex max-w-3xl flex-col gap-5">
       <Input
         label="Slug (URL)"
         name="slug"

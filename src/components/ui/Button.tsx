@@ -52,6 +52,16 @@ export function LinkButton({
   external?: boolean;
 }) {
   const classes = clsx(base, variantClasses[variant], className);
+  // mailto:/tel: no son páginas a navegar — deben abrirse en la misma
+  // pestaña (el navegador los delega al programa de correo/teléfono).
+  // Con target="_blank" algunos navegadores no completan la acción.
+  if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
