@@ -56,7 +56,7 @@ export default async function HomePage() {
             Ver todo el catálogo <ButtonArrow />
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {featuredBooks.map((book) => (
             <BookCard key={book.id} book={book} authorName={settings?.siteName ?? "Gabriela Guerra Rey"} />
           ))}
