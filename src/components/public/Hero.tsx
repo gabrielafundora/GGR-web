@@ -1,12 +1,17 @@
 import { LinkButton, ButtonArrow } from "@/components/ui/Button";
 
 export function Hero({
-  headline,
-  subtext,
+  name,
+  tagline,
+  description,
   imageUrl,
 }: {
-  headline: string;
-  subtext?: string | null;
+  /** Nombre de la autora, en grande — lo principal del hero. */
+  name: string;
+  /** Etiqueta corta arriba del nombre (ej. "Novelista y tallerista"). */
+  tagline?: string | null;
+  /** Descripción breve debajo del nombre. */
+  description?: string | null;
   imageUrl?: string | null;
 }) {
   return (
@@ -16,12 +21,12 @@ export function Hero({
       ) : null}
 
       <div className="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 sm:py-32 lg:py-40">
-        <p className="kicker text-accent">Autora · Gabriela Guerra Rey</p>
-        <h1 className="mt-5 max-w-2xl font-serif text-5xl leading-[1.05] sm:text-6xl md:text-7xl">
-          {headline}
+        {tagline ? <p className="kicker text-accent">{tagline}</p> : null}
+        <h1 className="mt-5 max-w-3xl font-serif text-6xl leading-[1.05] sm:text-7xl md:text-8xl">
+          {name}
         </h1>
-        {subtext ? (
-          <p className="mt-7 max-w-md text-base leading-relaxed text-ink-muted">{subtext}</p>
+        {description ? (
+          <p className="mt-7 max-w-md text-base leading-relaxed text-ink-muted">{description}</p>
         ) : null}
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
           <LinkButton href="/catalogo" variant="primary">
