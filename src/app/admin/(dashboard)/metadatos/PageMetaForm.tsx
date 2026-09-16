@@ -40,6 +40,7 @@ export function PageMetaForm({
           name="title"
           defaultValue={title}
           required
+          counterMax={60}
         />
         <Textarea
           id={`${page}-description`}
@@ -47,6 +48,7 @@ export function PageMetaForm({
           name="description"
           defaultValue={description}
           required
+          counterMax={160}
         />
         <ImageField
           id={`${page}-ogImageUrl`}

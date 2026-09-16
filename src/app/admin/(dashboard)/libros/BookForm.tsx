@@ -123,11 +123,13 @@ export function BookForm({
           label="Title (título de la pestaña)"
           name="metaTitle"
           defaultValue={book?.metaTitle ?? ""}
+          counterMax={60}
         />
         <Textarea
           label="Meta description"
           name="metaDescription"
           defaultValue={book?.metaDescription ?? ""}
+          counterMax={160}
         />
       </div>
 

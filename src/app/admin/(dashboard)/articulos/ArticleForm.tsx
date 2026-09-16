@@ -87,11 +87,13 @@ export function ArticleForm({
           label="Title (título de la pestaña)"
           name="metaTitle"
           defaultValue={article?.metaTitle ?? ""}
+          counterMax={60}
         />
         <Textarea
           label="Meta description"
           name="metaDescription"
           defaultValue={article?.metaDescription ?? ""}
+          counterMax={160}
         />
       </div>
 

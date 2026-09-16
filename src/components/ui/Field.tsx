@@ -1,24 +1,38 @@
 import { clsx } from "clsx";
+import { useState } from "react";
 import type { InputHTMLAttributes, ReactNode, SelectHTMLAttributes, TextareaHTMLAttributes } from "react";
+
+function CharCounter({ count, max }: { count: number; max: number }) {
+  return (
+    <span className={clsx("shrink-0 text-xs tabular-nums", count > max ? "text-red-600" : "text-muted")}>
+      {count}/{max}
+    </span>
+  );
+}
 
 function FieldWrapper({
   label,
   htmlFor,
   hint,
   error,
+  counter,
   children,
 }: {
   label: string;
   htmlFor: string;
   hint?: string;
   error?: string;
+  counter?: { count: number; max: number };
   children: ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={htmlFor} className="text-sm font-medium text-foreground">
-        {label}
-      </label>
+      <div className="flex items-baseline justify-between gap-2">
+        <label htmlFor={htmlFor} className="text-sm font-medium text-foreground">
+          {label}
+        </label>
+        {counter ? <CharCounter count={counter.count} max={counter.max} /> : null}
+      </div>
       {children}
       {hint && !error ? <p className="text-xs text-muted">{hint}</p> : null}
       {error ? <p className="text-xs text-accent">{error}</p> : null}
@@ -34,12 +48,37 @@ export function Input({
   hint,
   error,
   className,
+  counterMax,
+  defaultValue,
+  onChange,
   ...props
-}: InputHTMLAttributes<HTMLInputElement> & { label: string; hint?: string; error?: string }) {
+}: InputHTMLAttributes<HTMLInputElement> & {
+  label: string;
+  hint?: string;
+  error?: string;
+  /** Si se pasa, muestra un contador "n/max" junto al label (pensado para campos de SEO). */
+  counterMax?: number;
+}) {
   const id = props.id ?? props.name ?? label;
+  const [count, setCount] = useState(() => String(defaultValue ?? "").length);
   return (
-    <FieldWrapper label={label} htmlFor={id} hint={hint} error={error}>
-      <input id={id} className={clsx(inputClasses, className)} {...props} />
+    <FieldWrapper
+      label={label}
+      htmlFor={id}
+      hint={hint}
+      error={error}
+      counter={counterMax !== undefined ? { count, max: counterMax } : undefined}
+    >
+      <input
+        id={id}
+        className={clsx(inputClasses, className)}
+        defaultValue={defaultValue}
+        onChange={(e) => {
+          if (counterMax !== undefined) setCount(e.target.value.length);
+          onChange?.(e);
+        }}
+        {...props}
+      />
     </FieldWrapper>
   );
 }
@@ -51,12 +90,37 @@ export function Textarea({
   hint,
   error,
   className,
+  counterMax,
+  defaultValue,
+  onChange,
   ...props
-}: TextareaHTMLAttributes<HTMLTextAreaElement> & { label: string; hint?: string; error?: string }) {
+}: TextareaHTMLAttributes<HTMLTextAreaElement> & {
+  label: string;
+  hint?: string;
+  error?: string;
+  /** Si se pasa, muestra un contador "n/max" junto al label (pensado para campos de SEO). */
+  counterMax?: number;
+}) {
   const id = props.id ?? props.name ?? label;
+  const [count, setCount] = useState(() => String(defaultValue ?? "").length);
   return (
-    <FieldWrapper label={label} htmlFor={id} hint={hint} error={error}>
-      <textarea id={id} className={clsx(textareaClasses, className)} {...props} />
+    <FieldWrapper
+      label={label}
+      htmlFor={id}
+      hint={hint}
+      error={error}
+      counter={counterMax !== undefined ? { count, max: counterMax } : undefined}
+    >
+      <textarea
+        id={id}
+        className={clsx(textareaClasses, className)}
+        defaultValue={defaultValue}
+        onChange={(e) => {
+          if (counterMax !== undefined) setCount(e.target.value.length);
+          onChange?.(e);
+        }}
+        {...props}
+      />
     </FieldWrapper>
   );
 }
