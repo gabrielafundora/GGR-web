@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { prisma } from "@/lib/prisma";
+import { buildEntityMetadata } from "@/lib/metadata";
 import { LinkButton } from "@/components/ui/Button";
 import { MarkdownContent } from "@/components/public/MarkdownContent";
 
@@ -16,7 +17,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const book = await getBook(slug);
   if (!book) return { title: "Fragmento no encontrado" };
-  return { title: `Fragmento gratis: ${book.title}` };
+  // La meta description de esta página se genera sola a partir del título
+  // del libro — no es un campo editable en el admin (a diferencia de
+  // metaTitle/metaDescription en la página del libro).
+  return buildEntityMetadata({
+    title: `Fragmento gratis: ${book.title}`,
+    description: `Fragmento gratis de ${book.title}.`,
+  });
 }
 
 export default async function BookExcerptPage({
